@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$CIA - Clit Inspection Agency</title>
+    <meta name="description" content="To Preempt Pleasure-Voids and Further Global Clitoral Security Objectives. The official intelligence portal for the $CIA meme coin.">
+    
+    <!-- Chosen Palette: Spy-Fi Neon Terminal -->
+    <!-- Application Structure Plan: A linear, single-page narrative flow designed to immerse the user. The structure starts with a high-impact hero section (the hook), moves to lore-building (mission statement), provides a call to action (recruitment), showcases 'proof of work' (secret files/agents), and concludes with a highly interactive engagement tool (badge generator). This top-down approach guides the user through the parody's narrative, maximizing engagement by saving the most interactive element as a final reward. -->
+    <!-- Visualization & Content Choices: Report Info -> Goal -> Presentation -> Interaction -> Justification. 1. Mission -> Inform -> Styled Text Block -> None -> The focus is on the satirical copy, mimicking a declassified document. 2. Recruitment -> Guide -> 3-Column Card Grid -> Hover animations -> Classic, clear way to present distinct steps. 3. Secret Files -> Organize/Entertain -> JS Accordion -> Click to expand -> Mimics opening a classified file, enhancing the theme. 4. Agents -> Entertain -> Responsive Card Grid -> CSS 3D hover tilt -> Adds a modern, dynamic feel to the 'team' showcase. 5. Badge Generator -> Engage -> Canvas API in a Modal -> User input -> Provides a personalized, shareable takeaway, making the experience memorable and viral. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Allerta+Stencil&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #010B12;
+            color: #39FF13;
+            font-family: 'Roboto Mono', monospace;
+            position: relative;
+            overflow-x: hidden;
+        }
+       .font-stencil { font-family: 'Allerta Stencil', sans-serif; }
+       .font-mono { font-family: 'Roboto Mono', monospace; }
+       .text-neon-green { color: #39FF13; }
+       .border-neon-green { border-color: #39FF13; }
+       .bg-dark-jungle-green { background-color: #1E1F21; }
+
+       .scanline-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 1;
+        }
+       .scanline-overlay::before {
+            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+            background-size: 100% 4px;
+            animation: scan 15s linear infinite;
+        }
+        @keyframes scan {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 100vh; }
+        }
+       .scanline-overlay::after {
+            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(ellipse at center, rgba(0, 255, 0, 0.05) 0%, transparent 70%);
+            opacity: 0.5;
+        }
+
+       .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
+        }
+       .accordion-item.active .accordion-content {
+            max-height: 1000px;
+            transition: max-height 1s ease-in-out;
+        }
+       .accordion-item.active .accordion-toggle-icon {
+            transform: rotate(45deg);
+        }
+
+       .fade-in-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+       .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="scanline-overlay"></div>
+
+    <nav class="fixed top-0 left-0 right-0 bg-black/50 backdrop-blur-sm border-b border-neon-green/20 z-50">
+        <div class="container mx-auto flex justify-between items-center p-4 font-mono uppercase">
+            <a href="#home" class="font-stencil text-xl text-white hover:text-neon-green transition-colors">$CIA</a>
+            <button id="copy-ca-btn" class="mx-auto font-mono px-4 py-2 bg-black/80 border border-neon-green text-neon-green rounded-lg hover:bg-neon-green hover:text-black transition-all duration-300" style="font-size:1rem;">CA: 00000000000</button>
+            <div class="hidden md:flex space-x-6 text-sm">
+                <a href="#files" class="hover:text-white transition-colors">Files</a>
+                <a href="#agents" class="hover:text-white transition-colors">Agents</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <header id="home" class="relative flex items-center justify-center h-screen overflow-hidden" style="background: url('the lab.jpg') center center/cover no-repeat;">
+            <div class="absolute inset-0 bg-black opacity-60 z-20"></div>
+            <div class="relative z-30 text-center p-5">
+                <h1 class="font-stencil text-5xl md:text-7xl lg:text-8xl text-white uppercase tracking-widest" style="text-shadow: 0 0 15px #39FF13;">$CIA</h1>
+                <p class="font-mono text-xl md:text-3xl mt-4 text-neon-green">Clit Inspection Agency</p>
+                <p class="font-mono text-md md:text-lg mt-8 max-w-2xl mx-auto text-gray-300">To Preempt Pleasure-Voids and Further Global Clitoral Security Objectives.</p>
+                <button id="open-badge-btn" class="mt-12 inline-block font-mono uppercase px-8 py-3 border-2 border-neon-green text-neon-green bg-black/70 hover:bg-neon-green hover:text-black transition-all duration-300 rounded-lg hover:shadow-[0_0_20px_#39FF13]">Get Your ID Badge</button>
+            </div>
+        </header>
+
+
+
+        <section id="files" class="relative py-20 px-4 border-t-2 border-b-2 border-neon-green/20 fade-in-section" style="background: url('conference hall.jpg') center center/cover no-repeat;">
+            <div class="absolute inset-0 bg-black opacity-70 z-10"></div>
+            <div class="container mx-auto max-w-4xl relative z-20">
+            <h2 class="font-stencil text-4xl text-center uppercase text-white mb-12">Top Secret Files</h2>
+            <div id="accordion-container" class="space-y-4 font-mono">
+                <div class="accordion-item border border-neon-green/30">
+                <button class="accordion-header w-full text-left p-4 flex justify-between items-center bg-black/20 hover:bg-black/40 transition-colors">
+                    <span class="text-neon-green">OPERATION: FAST & LOOSE</span>
+                    <span class="accordion-toggle-icon text-neon-green transform transition-transform duration-300 text-2xl">+</span>
+                </button>
+                <div class="accordion-content">
+                    <p class="p-4 text-gray-300 border-t border-neon-green/30">A high-stakes mission to infiltrate European nightclubs. Objective: assess and report on the structural integrity of G-spots under extreme duress. High risk of pleasure-induced compromise.</p>
+                </div>
+                </div>
+                <div class="accordion-item border border-neon-green/30">
+                <button class="accordion-header w-full text-left p-4 flex justify-between items-center bg-black/20 hover:bg-black/40 transition-colors">
+                    <span class="text-neon-green">PROJECT: PLEASURE DOME</span>
+                    <span class="accordion-toggle-icon text-neon-green transform transition-transform duration-300 text-2xl">+</span>
+                </button>
+                <div class="accordion-content">
+                    <p class="p-4 text-gray-300 border-t border-neon-green/30">Development of next-generation tactile interrogation techniques. Field tests have shown a 98% success rate in extracting moans of approval. Project currently on hold pending ethics review.</p>
+                </div>
+                </div>
+                <div class="accordion-item border border-neon-green/30">
+                <button class="accordion-header w-full text-left p-4 flex justify-between items-center bg-black/20 hover:bg-black/40 transition-colors">
+                    <span class="text-neon-green">DOSSIER: THE ORGASM ALGORITHM</span>
+                    <span class="accordion-toggle-icon text-neon-green transform transition-transform duration-300 text-2xl">+</span>
+                </button>
+                <div class="accordion-content">
+                    <p class="p-4 text-gray-300 border-t border-neon-green/30">An ongoing analysis of predictive patterns in arousal metrics. AI-driven models are being trained to anticipate climax events with 99.7% accuracy. Data sourced from anonymous field reports.</p>
+                </div>
+                </div>
+            </div>
+            </div>
+        </section>
+        <section id="agents" class="relative py-20 px-4 border-t-2 border-b-2 border-neon-green/20 fade-in-section" style="background: url('empty lab3.jpg') center center/cover no-repeat;">
+            <div class="absolute inset-0 bg-black opacity-75 z-10"></div>
+            <div class="container mx-auto relative z-20">
+                <h2 class="font-stencil text-4xl text-center uppercase text-white mb-12 tracking-widest drop-shadow-[0_0_15px_#39FF13]">Meet The Agents</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+                    <!-- Agent Card -->
+                    <div class="agent-card bg-black/40 border border-neon-green/40 rounded-xl p-8 text-center shadow-[0_0_30px_rgba(57,255,19,0.25)] transition-all duration-300 hover:-translate-y-2 hover:scale-105 hover:shadow-[0_0_40px_#39FF13] group relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-neon-green/10 via-transparent to-black/30 opacity-60 pointer-events-none"></div>
+                        <img loading="lazy" src="naruto.jpeg" alt="Agent Velvet Glove" class="w-32 h-32 mx-auto mb-5 rounded-full object-cover border-4 border-neon-green shadow-[0_0_20px_#39FF13] grayscale group-hover:grayscale-0 transition-all duration-300">
+                        <h3 class="font-stencil text-2xl text-neon-green mb-2 drop-shadow-[0_0_10px_#39FF13]">Agent Velvet Glove</h3>
+                        <p class="font-mono text-gray-300 mb-2">Director of Clit Ops</p>
+                        <span class="inline-block font-mono text-xs text-neon-green bg-black/60 px-3 py-1 rounded-full border border-neon-green/30 mt-2">Clearance: ULTRA</span>
+                    </div>
+                    <!-- Agent Card -->
+                    <div class="agent-card bg-black/40 border border-neon-green/40 rounded-xl p-8 text-center shadow-[0_0_30px_rgba(57,255,19,0.25)] transition-all duration-300 hover:-translate-y-2 hover:scale-105 hover:shadow-[0_0_40px_#39FF13] group relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-neon-green/10 via-transparent to-black/30 opacity-60 pointer-events-none"></div>
+                        <img loading="lazy" src="spark.jpeg" alt="Senior Lipstick Analyst" class="w-32 h-32 mx-auto mb-5 rounded-full object-cover border-4 border-neon-green shadow-[0_0_20px_#39FF13] grayscale group-hover:grayscale-0 transition-all duration-300">
+                        <h3 class="font-stencil text-2xl text-neon-green mb-2 drop-shadow-[0_0_10px_#39FF13]">Senior Lipstick Analyst</h3>
+                        <p class="font-mono text-gray-300 mb-2">Head of Covert Cosmetics</p>
+                        <span class="inline-block font-mono text-xs text-neon-green bg-black/60 px-3 py-1 rounded-full border border-neon-green/30 mt-2">Clearance: SECRET</span>
+                    </div>
+                    <!-- Agent Card -->
+                    <div class="agent-card bg-black/40 border border-neon-green/40 rounded-xl p-8 text-center shadow-[0_0_30px_rgba(57,255,19,0.25)] transition-all duration-300 hover:-translate-y-2 hover:scale-105 hover:shadow-[0_0_40px_#39FF13] group relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-neon-green/10 via-transparent to-black/30 opacity-60 pointer-events-none"></div>
+                        <img loading="lazy" src="shhh.jpeg" alt="The Whisperer" class="w-32 h-32 mx-auto mb-5 rounded-full object-cover border-4 border-neon-green shadow-[0_0_20px_#39FF13] grayscale group-hover:grayscale-0 transition-all duration-300">
+                        <h3 class="font-stencil text-2xl text-neon-green mb-2 drop-shadow-[0_0_10px_#39FF13]">The Whisperer</h3>
+                        <p class="font-mono text-gray-300 mb-2">Chief Interrogation Tickler</p>
+                        <span class="inline-block font-mono text-xs text-neon-green bg-black/60 px-3 py-1 rounded-full border border-neon-green/30 mt-2">Clearance: TOP SECRET</span>
+                    </div>
+                    <!-- Agent Card -->
+                    <div class="agent-card bg-black/40 border border-neon-green/40 rounded-xl p-8 text-center shadow-[0_0_30px_rgba(57,255,19,0.25)] transition-all duration-300 hover:-translate-y-2 hover:scale-105 hover:shadow-[0_0_40px_#39FF13] group relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-neon-green/10 via-transparent to-black/30 opacity-60 pointer-events-none"></div>
+                        <img loading="lazy" src="ghost god.jpeg" alt="Agent Provocateur" class="w-32 h-32 mx-auto mb-5 rounded-full object-cover border-4 border-neon-green shadow-[0_0_20px_#39FF13] grayscale group-hover:grayscale-0 transition-all duration-300">
+                        <h3 class="font-stencil text-2xl text-neon-green mb-2 drop-shadow-[0_0_10px_#39FF13]">Agent Provocateur</h3>
+                        <p class="font-mono text-gray-300 mb-2">Field Operations Specialist</p>
+                        <span class="inline-block font-mono text-xs text-neon-green bg-black/60 px-3 py-1 rounded-full border border-neon-green/30 mt-2">Clearance: ULTRA</span>
+                    </div>
+                    <!-- Agent Card -->
+                    <div class="agent-card bg-black/40 border border-neon-green/40 rounded-xl p-8 text-center shadow-[0_0_30px_rgba(57,255,19,0.25)] transition-all duration-300 hover:-translate-y-2 hover:scale-105 hover:shadow-[0_0_40px_#39FF13] group relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-neon-green/10 via-transparent to-black/30 opacity-60 pointer-events-none"></div>
+                        <img loading="lazy" src="baji.jpeg" alt="Deep Throat" class="w-32 h-32 mx-auto mb-5 rounded-full object-cover border-4 border-neon-green shadow-[0_0_20px_#39FF13] grayscale group-hover:grayscale-0 transition-all duration-300">
+                        <h3 class="font-stencil text-2xl text-neon-green mb-2 drop-shadow-[0_0_10px_#39FF13]">Deep Throat</h3>
+                        <p class="font-mono text-gray-300 mb-2">Senior Intelligence Handler</p>
+                        <span class="inline-block font-mono text-xs text-neon-green bg-black/60 px-3 py-1 rounded-full border border-neon-green/30 mt-2">Clearance: SECRET</span>
+                    </div>
+                    <!-- Agent Card -->
+                    <div class="agent-card bg-black/40 border border-neon-green/40 rounded-xl p-8 text-center shadow-[0_0_30px_rgba(57,255,19,0.25)] transition-all duration-300 hover:-translate-y-2 hover:scale-105 hover:shadow-[0_0_40px_#39FF13] group relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-neon-green/10 via-transparent to-black/30 opacity-60 pointer-events-none"></div>
+                        <img loading="lazy" src="Gojo Satoru.jpeg" alt="Master Baiter" class="w-32 h-32 mx-auto mb-5 rounded-full object-cover border-4 border-neon-green shadow-[0_0_20px_#39FF13] grayscale group-hover:grayscale-0 transition-all duration-300">
+                        <h3 class="font-stencil text-2xl text-neon-green mb-2 drop-shadow-[0_0_10px_#39FF13]">Master Baiter</h3>
+                        <p class="font-mono text-gray-300 mb-2">Lures & Traps Division</p>
+                        <span class="inline-block font-mono text-xs text-neon-green bg-black/60 px-3 py-1 rounded-full border border-neon-green/30 mt-2">Clearance: TOP SECRET</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="badge-generator" class="relative py-20 px-4 fade-in-section" style="background: url('the lab.jpg') center center/cover no-repeat;">
+            <div class="absolute inset-0 bg-black opacity-70 z-10"></div>
+            <div class="container mx-auto max-w-2xl text-center relative z-20">
+                <h2 class="font-stencil text-4xl uppercase text-neon-green mb-6 drop-shadow-[0_0_15px_#39FF13]">Issue Field Credentials</h2>
+                <p class="font-mono text-gray-300 mb-8">Enter your operative handle (Twitter/X) to generate your official <span class="text-neon-green">$CIA Agent ID badge</span>.</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+                    <input type="text" id="twitter-handle-input" placeholder="@YourHandle" class="font-mono bg-black/70 border border-neon-green/50 text-neon-green p-3 text-center sm:text-left flex-grow focus:outline-none focus:ring-2 focus:ring-neon-green rounded-lg shadow-[0_0_10px_#39FF13] transition-all duration-300">
+                    <button id="generate-badge-btn" class="font-mono uppercase px-8 py-3 border-2 border-neon-green text-neon-green bg-black/70 hover:bg-neon-green hover:text-black transition-all duration-300 rounded-lg hover:shadow-[0_0_20px_#39FF13]">Issue Clearance</button>
+                </div>
+            </div>
+            <div id="badge-modal" class="fixed inset-0 bg-black/80 hidden items-center justify-center z-50 p-4">
+                <div class="relative bg-dark-jungle-green p-6 border-2 border-neon-green rounded-xl shadow-[0_0_40px_#39FF13] max-w-md w-full flex flex-col items-center">
+                    <button id="close-modal-btn" class="absolute -top-4 -right-4 text-neon-green bg-black border-2 border-neon-green rounded-full w-10 h-10 font-bold flex items-center justify-center text-xl hover:bg-neon-green hover:text-black transition-all duration-300 shadow-[0_0_10px_#39FF13]">×</button>
+                    <div id="cia-card" class="w-[420px] h-[260px] bg-white rounded-2xl shadow-lg border-4 border-blue-900 flex flex-col justify-between relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-full h-2 bg-blue-900 rounded-t-2xl"></div>
+                        <div class="flex items-center justify-between px-6 pt-6">
+                            <div class="flex flex-col items-center">
+                                <div class="w-20 h-20 rounded-full bg-blue-900 flex items-center justify-center border-4 border-yellow-400">
+                                    <span class="font-stencil text-2xl text-yellow-400">CIA</span>
+                                </div>
+                                <span class="font-mono text-xs text-blue-900 mt-2">Clit Inspection Agency</span>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <div id="profile-pic-container" class="w-24 h-24 rounded-lg border-2 border-blue-900 bg-gray-200 flex items-center justify-center overflow-hidden">
+                                    <!-- Profile picture will be inserted here -->
+                                </div>
+                            </div>
+                        </div>
+                        <div id="profile-name-section" class="w-full flex flex-col items-center justify-center mt-2"></div>
+                        </div>
+                        <div class="px-6 pt-2 pb-1">
+                            <h3 class="font-stencil text-3xl text-blue-900 tracking-widest">CLITORIS INVESTIGATION AGENCY</h3>
+                            <p class="font-mono text-xs text-blue-900 mt-1">THIS CERTIFIES THAT THE SIGNATURE AND PHOTOGRAPH HEREON IS AN APPROVED</p>
+                        </div>
+                        <div class="bg-blue-900 w-full py-2 px-6 flex flex-col items-start rounded-b-2xl">
+                            <span class="font-mono text-white text-lg font-bold">SPECIAL AGENT :</span>
+                            <span id="profile-name" class="font-mono text-neon-green text-base font-bold"></span>
+                            <span id="profile-handle" class="font-mono text-neon-green text-sm"></span>
+                        </div>
+                    </div>
+                    <p class="font-mono text-gray-400 text-xs mt-2">Right-click and save your badge. Welcome, Agent.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-8 px-4 border-t-2 border-neon-green/20 text-center font-mono text-gray-500 text-sm">
+        <p>&copy; 2025 Clit Inspection Agency. All rights reserved. Information is classified.</p>
+        <p>This is a parody project and is not affiliated with any government agency. For entertainment purposes only.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const copyCABtn = document.getElementById('copy-ca-btn');
+            if (copyCABtn) {
+                copyCABtn.addEventListener('click', () => {
+                    navigator.clipboard.writeText('00000000000');
+                    copyCABtn.textContent = 'Copied!';
+                    setTimeout(() => {
+                        copyCABtn.textContent = 'CA: 00000000000';
+                    }, 1200);
+                });
+            }
+            const openBadgeBtn = document.getElementById('open-badge-btn');
+            if (openBadgeBtn) {
+                openBadgeBtn.addEventListener('click', () => {
+                    const badgeSection = document.getElementById('badge-generator');
+                    if (badgeSection) {
+                        badgeSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            }
+            const accordionContainer = document.getElementById('accordion-container');
+            if (accordionContainer) {
+                accordionContainer.addEventListener('click', (e) => {
+                    const header = e.target.closest('.accordion-header');
+                    if (!header) return;
+
+                    const item = header.parentElement;
+                    const currentlyActiveItem = accordionContainer.querySelector('.accordion-item.active');
+
+                    if (currentlyActiveItem && currentlyActiveItem !== item) {
+                        currentlyActiveItem.classList.remove('active');
+                    }
+                    item.classList.toggle('active');
+                });
+            }
+
+            const fadeInSections = document.querySelectorAll('.fade-in-section');
+            const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            fadeInSections.forEach(section => { observer.observe(section); });
+
+            const generateBtn = document.getElementById('generate-badge-btn');
+            const twitterInput = document.getElementById('twitter-handle-input');
+            const modal = document.getElementById('badge-modal');
+            const closeModalBtn = document.getElementById('close-modal-btn');
+            const picContainer = document.getElementById('profile-pic-container');
+            const nameEl = document.getElementById('profile-name');
+            const handleEl = document.getElementById('profile-handle');
+
+            async function fetchTwitterProfile(username) {
+                try {
+                    const response = await fetch(`http://127.0.0.1:8787/?username=${username}`);
+                    if (!response.ok) throw new Error('Profile not found');
+                    return await response.json();
+                } catch (e) {
+                    return null;
+                }
+            }
+            function extractUsername(urlOrHandle) {
+                let match = urlOrHandle.match(/(?:x.com\/|twitter.com\/)?([A-Za-z0-9_]{1,15})/);
+                if (match) return match[1];
+                return urlOrHandle.replace('@','').trim();
+            }
+            async function drawBadgeWithProfile(profile) {
+                picContainer.innerHTML = '';
+                let avatar;
+                if (profile && profile.pfp_url) {
+                    avatar = document.createElement('img');
+                    avatar.src = profile.pfp_url;
+                    avatar.alt = 'Profile Picture';
+                    avatar.className = 'w-full h-full object-cover rounded-lg';
+                    picContainer.appendChild(avatar);
+                } else {
+                    picContainer.innerHTML = '<span class="font-mono text-blue-900">No Image</span>';
+                }
+                // Set name in dedicated section below image (outside image container)
+                const nameSection = document.getElementById('profile-name-section');
+                if (nameSection) {
+                    nameSection.innerHTML = '';
+                    const nameSpan = document.createElement('span');
+                    nameSpan.id = 'profile-name-under-pic';
+                    nameSpan.className = 'font-mono text-blue-900 text-base font-bold bg-white rounded px-2 py-1 shadow';
+                    nameSpan.textContent = (profile?.name || 'AGENT REDACTED');
+                    nameSection.appendChild(nameSpan);
+                }
+                nameEl.textContent = (profile?.name || 'AGENT REDACTED').toUpperCase();
+                handleEl.textContent = (profile?.handle || '@AGENT_REDACTED');
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            }
+            generateBtn.addEventListener('click', async () => {
+                const input = twitterInput.value.trim();
+                const username = extractUsername(input);
+                const profile = await fetchTwitterProfile(username);
+                await drawBadgeWithProfile(profile);
+            });
+
+            const closeModal = () => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            };
+
+            closeModalBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
