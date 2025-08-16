@@ -304,9 +304,21 @@
 
             async function fetchTwitterProfile(username) {
                 try {
-                    const response = await fetch(`http://127.0.0.1:8787/?username=${username}`);
-                    if (!response.ok) throw new Error('Profile not found');
-                    return await response.json();
+                    // Use Vercel serverless endpoint
+                    const response = await fetch(`/api/get_pfp?username=${username}`);
+                    let data;
+                    try {
+                        data = await response.json();
+                    } catch (e) {
+                        console.error('Failed to parse JSON:', e);
+                        throw new Error('Invalid backend response');
+                    }
+                    if (!response.ok) {
+                        console.error('Backend error:', data);
+                        throw new Error('Profile not found');
+                    }
+                    console.log('Backend response:', data);
+                    return data;
                 } catch (e) {
                     return null;
                 }
