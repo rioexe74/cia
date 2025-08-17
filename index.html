@@ -518,6 +518,19 @@
                 if (e.target === modal) closeModal();
             });
         });
+
+        // Convert vertical scroll to horizontal scroll
+const container = document.getElementById("main-container");
+container.addEventListener("wheel", (e) => {
+    if (e.deltaY !== 0) {
+        e.preventDefault(); 
+        container.scrollBy({
+            left: e.deltaY, // use vertical scroll as horizontal movement
+            behavior: "smooth"
+        });
+    }
+}, { passive: false });
+
     </script>
 </body>
 </html>
