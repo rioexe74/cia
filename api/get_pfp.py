@@ -1,8 +1,8 @@
 import json
 from twikit.guest import GuestClient
 
-# Vercel Python serverless function entry point
-async def handler(request):
+ # Vercel Python serverless function entry point
+async def default(request):
     # Get the username from query string
     username = request.args.get('username') if hasattr(request, 'args') else None
 
