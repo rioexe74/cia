@@ -1,10 +1,13 @@
+import asyncio
 import json
 from twikit.guest import GuestClient
 
- # Vercel Python serverless function entry point
-async def default(request):
+# Vercel Python serverless function entry point
+def handler(event, context):
     # Get the username from query string
-    username = request.args.get('username') if hasattr(request, 'args') else None
+    username = None
+    if event.get('queryStringParameters'):
+        username = event['queryStringParameters'].get('username')
 
     if not username:
         return {
@@ -16,28 +19,36 @@ async def default(request):
             'body': json.dumps({'error': 'Username parameter is missing'})
         }
 
-    try:
-        client = GuestClient()
-        await client.activate()
-        user = await client.get_user_by_screen_name(username)
-        pfp_url = (user.profile_image_url or '').replace('_normal', '')
-        display_name = getattr(user, 'name', '') or ''
-        screen_name = getattr(user, 'screen_name', '') or username
-        result = {"pfp_url": pfp_url, "name": display_name, "handle": f"@{screen_name}"}
-        return {
-            'statusCode': 200,
-            'headers': {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
-            },
-            'body': json.dumps(result)
-        }
-    except Exception as e:
+    async def get_pfp_url(username):
+        try:
+            client = GuestClient()
+            await client.activate()
+        except Exception as e:
+            return None, f"Could not activate the guest client: {e}"
+        try:
+            user = await client.get_user_by_screen_name(username)
+            pfp_url = (user.profile_image_url or '').replace('_normal', '')
+            display_name = getattr(user, 'name', '') or ''
+            screen_name = getattr(user, 'screen_name', '') or username
+            return {"pfp_url": pfp_url, "name": display_name, "handle": f"@{screen_name}"}, None
+        except Exception as e:
+            return None, f"User '{username}' not found or profile is protected."
+
+    result, error = asyncio.run(get_pfp_url(username))
+    if error:
         return {
             'statusCode': 404,
             'headers': {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*'
             },
-            'body': json.dumps({'error': str(e)})
+            'body': json.dumps({'error': error})
         }
+    return {
+        'statusCode': 200,
+        'headers': {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+        },
+        'body': json.dumps(result)
+    }
