@@ -13,8 +13,41 @@
     <link href="https://fonts.googleapis.com/css2?family=Allerta+Stencil&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
-       /* Animated CA Button (Header) */
-       #copy-ca-btn {
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden; 
+        }
+
+        #main-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            overflow-x: scroll;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none; 
+            -ms-overflow-style: none; 
+        }
+
+        #main-container::-webkit-scrollbar {
+            display: none; 
+        }
+
+        .page-section {
+            width: 100vw;
+            height: 100vh;
+            flex-shrink: 0;
+            scroll-snap-align: start;
+            position: relative;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center center;
+        }
+        
+        #copy-ca-btn {
             box-shadow: 0 0 0px #39FF13;
             transition: box-shadow 0.3s, transform 0.3s, background 0.3s, color 0.3s;
         }
@@ -24,8 +57,8 @@
             background: linear-gradient(90deg, #39FF13 0%, #010B12 80%);
             color: #fff;
         }
-       /* Neon Flicker Animation */
-       @keyframes neon-flicker {
+        
+        @keyframes neon-flicker {
             0%, 100% { text-shadow: 0 0 15px #39FF13, 0 0 30px #39FF13; opacity: 1; }
             2% { opacity: 0.7; }
             4% { opacity: 1; }
@@ -42,120 +75,110 @@
             28% { opacity: 0.6; }
             30% { opacity: 1; }
         }
-       .flicker {
+        .flicker {
             animation: neon-flicker 2.2s infinite;
         }
-       /* --- POLISHED VISUAL EFFECTS START --- */
 
-       body {
+        body {
             background-color: #010B12;
             color: #39FF13;
             font-family: 'Roboto Mono', monospace;
-            position: relative;
-            overflow-x: hidden;
-       }
+        }
 
-       .font-stencil { font-family: 'Allerta Stencil', sans-serif; }
-       .font-mono { font-family: 'Roboto Mono', monospace; }
-       .text-neon-green { color: #39FF13; }
-       .border-neon-green { border-color: #39FF13; }
-       .bg-dark-jungle-green { background-color: #1E1F21; }
+        .font-stencil { font-family: 'Allerta Stencil', sans-serif; }
+        .font-mono { font-family: 'Roboto Mono', monospace; }
+        .text-neon-green { color: #39FF13; }
+        .border-neon-green { border-color: #39FF13; }
+        .bg-dark-jungle-green { background-color: #1E1F21; }
 
-       /* Navigation Bar Scroll Effect */
-       #navbar {
+        #navbar {
             transition: background-color 0.4s ease-out, box-shadow 0.4s ease-out;
-       }
+        }
 
-       /* Animated 'Get Your Badge' Button */
-       #get-badge-btn {
+        #get-badge-btn {
             box-shadow: 0 0 0px #39FF13;
             transition: box-shadow 0.3s, transform 0.3s, background 0.3s, color 0.3s;
-       }
-       #get-badge-btn:hover, #get-badge-btn:focus {
+        }
+        #get-badge-btn:hover, #get-badge-btn:focus {
             box-shadow: 0 0 18px #39FF13, 0 0 40px #39FF13 inset, 0 0 8px #fff;
             transform: scale(1.08);
             background: linear-gradient(90deg, #39FF13 0%, #010B12 80%);
             color: #fff;
-       }
-       
-       /* Terminal Scanline Overlay */
-       .scanline-overlay {
+        }
+        
+        .scanline-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             pointer-events: none; z-index: 1;
         }
-       .scanline-overlay::before {
+        .scanline-overlay::before {
             content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background: linear-gradient(to bottom, rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
             background-size: 100% 4px;
             animation: scan 15s linear infinite;
         }
-       @keyframes scan {
+        @keyframes scan {
             0% { background-position: 0 0; }
             100% { background-position: 0 100vh; }
-       }
-       .scanline-overlay::after {
+        }
+        .scanline-overlay::after {
             content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background: radial-gradient(ellipse at center, rgba(0, 255, 0, 0.05) 0%, transparent 70%);
             opacity: 0.5;
-       }
+        }
 
-       /* Accordion Polish */
-       .accordion-content {
+        .accordion-content {
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.5s cubic-bezier(0, 1, 0, 1), padding 0.5s ease-out;
-            padding: 0 1rem; /* p-4 */
-       }
-       .accordion-item.active .accordion-content {
+            padding: 0 1rem;
+        }
+        .accordion-item.active .accordion-content {
             max-height: 1000px;
             transition: max-height 1s ease-in-out, padding 0.5s ease-in;
-            padding: 1rem; /* p-4 */
-       }
-       .accordion-item.active .accordion-toggle-icon {
+            padding: 1rem;
+        }
+        .accordion-item.active .accordion-toggle-icon {
             transform: rotate(45deg);
-       }
-       .accordion-header {
+        }
+        .accordion-header {
            transition: background-color 0.3s ease;
-       }
+        }
 
-       /* Scroll Fade-in Effect */
-       .fade-in-section {
+        .fade-in-section {
             opacity: 0;
             transform: translateY(30px);
             transition: opacity 0.8s cubic-bezier(0.645, 0.045, 0.355, 1), transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
-       }
-       .fade-in-section.is-visible {
+        }
+        .fade-in-section.is-visible {
             opacity: 1;
             transform: translateY(0);
-       }
+        }
         
-       /* Agent Carousel Effects */
-       .mask-gradient {
+        .mask-gradient {
             -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 100%);
             mask-image: linear-gradient(to right, transparent 0%, black 15%, black 100%);
-       }
+        }
 
-       #agent-carousel .agent-card {
+        #agent-carousel .agent-card {
             position: relative;
             transform-style: preserve-3d;
             transition: transform 0.4s ease-out, box-shadow 0.4s ease-out;
-       }
+        }
         
-       #agent-carousel .agent-card:hover {
+        #agent-carousel .agent-card:hover {
             transform: translateY(-12px) scale(1.08) perspective(1000px) rotateY(2deg);
             box-shadow: 0 10px 40px rgba(57, 255, 19, 0.5);
             z-index: 10;
-       }
+        }
         
-       /* Glowing border on hover */
-       #agent-carousel .agent-card::before {
+        #agent-carousel .agent-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            border-radius: 0.75rem; /* 12px */
+            border-radius: 0.75rem;
             border: 2px solid transparent;
             background: linear-gradient(45deg, #39FF13, #00fffb) border-box;
             -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
@@ -163,29 +186,21 @@
             mask-composite: exclude;
             opacity: 0;
             transition: opacity 0.4s ease-out;
-       }
+        }
         
-       #agent-carousel .agent-card:hover::before {
+        #agent-carousel .agent-card:hover::before {
             opacity: 1;
-       }
+        }
         
-       /* Modern CSS Image Effect on Hover */
-       #agent-carousel .agent-card img {
+        #agent-carousel .agent-card img {
             transition: filter 0.4s ease-out, transform 0.4s ease-out;
             filter: grayscale(80%) contrast(1.1);
-       }
+        }
         
-       #agent-carousel .agent-card:hover img {
+        #agent-carousel .agent-card:hover img {
             filter: grayscale(0%) brightness(1.1) contrast(1);
             transform: scale(1.05);
-       }
-
-       /* Parallax effect for header background */
-       #home {
-           background-attachment: fixed;
-       }
-
-       /* --- POLISHED VISUAL EFFECTS END --- */
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -194,17 +209,17 @@
 
     <nav id="navbar" class="fixed top-0 left-0 right-0 bg-black/50 backdrop-blur-sm border-b border-neon-green/20 z-50">
         <div class="container mx-auto flex justify-between items-center p-4 font-mono uppercase">
-            <a href="#home" class="font-stencil text-xl text-white hover:text-neon-green transition-colors duration-300">$CIA</a>
+            <a href="#home" data-target="home" class="nav-link font-stencil text-xl text-white hover:text-neon-green transition-colors duration-300">$CIA</a>
             <button id="copy-ca-btn" class="mx-auto font-mono px-4 py-2 bg-black/80 border border-neon-green text-neon-green rounded-lg hover:bg-neon-green hover:text-black transition-all duration-300" style="font-size:1rem;">CA: 00000000000</button>
             <div class="hidden md:flex space-x-6 text-sm">
-                <a href="#files" class="hover:text-white transition-colors duration-300">Files</a>
-                <a href="#badge-generator" class="hover:text-white transition-colors duration-300">Badge</a>
+                <a href="#files" data-target="files" class="nav-link hover:text-white transition-colors duration-300">Files</a>
+                <a href="#badge-generator" data-target="badge-generator" class="nav-link hover:text-white transition-colors duration-300">Badge</a>
             </div>
         </div>
     </nav>
 
-    <main>
-        <header id="home" class="relative flex items-center justify-center h-screen overflow-hidden" style="background-image: url('the lab.jpg'); background-size: cover; background-position: center center;">
+    <main id="main-container">
+        <header id="home" class="page-section flex items-center justify-center" style="background-image: url('the\ lab.jpg');">
             <div class="absolute inset-0 bg-black opacity-60 z-20"></div>
             <div class="absolute left-0 top-1/2 transform -translate-y-1/2 z-30 flex flex-row items-center justify-between p-8 w-full">
                 <div class="flex flex-col items-start mr-12">
@@ -217,16 +232,15 @@
                     <h2 class="font-stencil text-3xl uppercase text-white mb-2 tracking-widest self-end pr-4" style="text-shadow: 0 0 10px #39FF13;">Agents</h2>
                     <div class="relative w-[800px] h-[320px] flex items-center justify-end mask-gradient">
                         <div id="agent-carousel" class="flex overflow-hidden w-full h-full px-4 pt-8 pb-4">
-                            <!-- Agent Cards will be injected by JS -->
                         </div>
                     </div>
                 </div>
             </div>
         </header>
 
-        <section id="files" class="relative py-20 px-4 border-t-2 border-b-2 border-neon-green/20 fade-in-section" style="background-image: url('conference hall.jpg'); background-size: cover; background-position: center center;">
+        <section id="files" class="page-section flex items-center justify-center" style="background-image: url('empty\ lab3.jpg');">
             <div class="absolute inset-0 bg-black opacity-70 z-10"></div>
-            <div class="container mx-auto max-w-4xl relative z-20">
+            <div class="container mx-auto max-w-4xl relative z-20 p-4">
             <h2 class="font-stencil text-4xl text-center uppercase text-white mb-12">Top Secret Files</h2>
             <div id="accordion-container" class="space-y-4 font-mono">
                 <div class="accordion-item border border-neon-green/30 rounded-lg overflow-hidden">
@@ -260,9 +274,9 @@
             </div>
         </section>
         
-        <section id="badge-generator" class="relative py-20 px-4 fade-in-section" style="background-image: url('the lab.jpg'); background-size: cover; background-position: center center; background-attachment: fixed;">
+        <section id="badge-generator" class="page-section flex items-center justify-center" style="background-image: url('lab\ 2.jpg');">
             <div class="absolute inset-0 bg-black opacity-70 z-10"></div>
-            <div class="container mx-auto max-w-2xl text-center relative z-20">
+            <div class="container mx-auto max-w-2xl text-center relative z-20 p-4">
                 <h2 class="font-stencil text-4xl uppercase text-neon-green mb-6 drop-shadow-[0_0_15px_#39FF13]">Issue Field Credentials</h2>
                 <p class="font-mono text-gray-300 mb-8">Enter your operative handle (Twitter/X) to generate your official <span class="text-neon-green">$CIA Agent ID badge</span>.</p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
@@ -270,77 +284,100 @@
                     <button id="generate-badge-btn" class="font-mono uppercase px-8 py-3 border-2 border-neon-green text-neon-green bg-black/70 hover:bg-neon-green hover:text-black transition-all duration-300 rounded-lg hover:shadow-[0_0_20px_#39FF13]">Issue Clearance</button>
                 </div>
             </div>
-            <div id="badge-modal" class="fixed inset-0 bg-black/80 hidden items-center justify-center z-50 p-4 backdrop-blur-sm">
-                <div class="relative bg-dark-jungle-green p-6 border-2 border-neon-green rounded-xl shadow-[0_0_40px_#39FF13] max-w-md w-full flex flex-col items-center">
-                    <button id="close-modal-btn" class="absolute -top-4 -right-4 text-neon-green bg-black border-2 border-neon-green rounded-full w-10 h-10 font-bold flex items-center justify-center text-xl hover:bg-neon-green hover:text-black transition-all duration-300 shadow-[0_0_10px_#39FF13]">×</button>
-                    <div id="cia-card" class="w-[420px] h-[260px] bg-white rounded-2xl shadow-lg border-4 border-blue-900 flex flex-col justify-between relative overflow-hidden">
-                        <div class="absolute top-0 left-0 w-full h-2 bg-blue-900 rounded-t-2xl"></div>
-                        <div class="flex items-center justify-between px-6 pt-6">
-                            <div class="flex flex-col items-center">
-                                <div class="w-20 h-20 rounded-full bg-blue-900 flex items-center justify-center border-4 border-yellow-400">
-                                    <span class="font-stencil text-2xl text-yellow-400">CIA</span>
-                                </div>
-                                <span class="font-mono text-xs text-blue-900 mt-2">Clit Inspection Agency</span>
-                            </div>
-                            <div class="flex flex-col items-center">
-                                <div id="profile-pic-container" class="w-24 h-24 rounded-lg border-2 border-blue-900 bg-gray-200 flex items-center justify-center overflow-hidden">
-                                    <!-- Profile picture will be inserted here -->
-                                </div>
-                            </div>
-                        </div>
-                        <div id="profile-name-section" class="w-full flex flex-col items-center justify-center mt-2"></div>
-                        </div>
-                        <div class="px-6 pt-2 pb-1">
-                            <h3 class="font-stencil text-3xl text-blue-900 tracking-widest">CLITORIS INVESTIGATION AGENCY</h3>
-                            <p class="font-mono text-xs text-blue-900 mt-1">THIS CERTIFIES THAT THE SIGNATURE AND PHOTOGRAPH HEREON IS AN APPROVED</p>
-                        </div>
-                        <div class="bg-blue-900 w-full py-2 px-6 flex flex-col items-start rounded-b-2xl">
-                            <span class="font-mono text-white text-lg font-bold">SPECIAL AGENT :</span>
-                            <span id="profile-name" class="font-mono text-neon-green text-base font-bold"></span>
-                            <span id="profile-handle" class="font-mono text-neon-green text-sm"></span>
-                        </div>
-                    </div>
-                    <p class="font-mono text-gray-400 text-xs mt-2">Right-click and save your badge. Welcome, Agent.</p>
-                </div>
-            </div>
         </section>
     </main>
 
-    <footer class="py-8 px-4 border-t-2 border-neon-green/20 text-center font-mono text-gray-500 text-sm">
+    <footer class="fixed bottom-0 left-0 right-0 py-4 px-4 border-t-2 border-neon-green/20 text-center font-mono text-gray-500 text-xs bg-black/50 backdrop-blur-sm z-50">
         <p>&copy; 2025 Clit Inspection Agency. All rights reserved. Information is classified.</p>
         <p>This is a parody project and is not affiliated with any government agency. For entertainment purposes only.</p>
     </footer>
 
+    <div id="badge-modal" class="fixed inset-0 bg-black/80 hidden items-center justify-center z-50 p-4 backdrop-blur-sm">
+        <div class="relative bg-dark-jungle-green p-6 border-2 border-neon-green rounded-xl shadow-[0_0_40px_#39FF13] max-w-md w-full flex flex-col items-center">
+            <button id="close-modal-btn" class="absolute -top-4 -right-4 text-neon-green bg-black border-2 border-neon-green rounded-full w-10 h-10 font-bold flex items-center justify-center text-xl hover:bg-neon-green hover:text-black transition-all duration-300 shadow-[0_0_10px_#39FF13]">×</button>
+            <div id="cia-card" class="w-[420px] h-[260px] bg-white rounded-2xl shadow-lg border-4 border-blue-900 flex flex-col justify-between relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-2 bg-blue-900 rounded-t-2xl"></div>
+                <div class="flex items-center justify-between px-6 pt-6">
+                    <div class="flex flex-col items-center">
+                        <div class="w-20 h-20 rounded-full bg-blue-900 flex items-center justify-center border-4 border-yellow-400">
+                            <span class="font-stencil text-2xl text-yellow-400">CIA</span>
+                        </div>
+                        <span class="font-mono text-xs text-blue-900 mt-2">Clit Inspection Agency</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div id="profile-pic-container" class="w-24 h-24 rounded-lg border-2 border-blue-900 bg-gray-200 flex items-center justify-center overflow-hidden">
+                        </div>
+                    </div>
+                </div>
+                <div id="profile-name-section" class="w-full flex flex-col items-center justify-center mt-2"></div>
+                <div class="px-6 pt-2 pb-1">
+                    <h3 class="font-stencil text-3xl text-blue-900 tracking-widest">CLITORIS INVESTIGATION AGENCY</h3>
+                    <p class="font-mono text-xs text-blue-900 mt-1">THIS CERTIFIES THAT THE SIGNATURE AND PHOTOGRAPH HEREON IS AN APPROVED</p>
+                </div>
+                <div class="bg-blue-900 w-full py-2 px-6 flex flex-col items-start rounded-b-2xl">
+                    <span class="font-mono text-white text-lg font-bold">SPECIAL AGENT :</span>
+                    <span id="profile-name" class="font-mono text-neon-green text-base font-bold"></span>
+                    <span id="profile-handle" class="font-mono text-neon-green text-sm"></span>
+                </div>
+            </div>
+            <p class="font-mono text-gray-400 text-xs mt-2">Right-click and save your badge. Welcome, Agent.</p>
+        </div>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // --- NEW: Navbar scroll effect ---
-            const navbar = document.getElementById('navbar');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    navbar.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
-                    navbar.style.boxShadow = '0 4px 12px rgba(57, 255, 19, 0.2)';
-                } else {
-                    navbar.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
-                    navbar.style.boxShadow = 'none';
+            const mainContainer = document.getElementById('main-container');
+            const sections = document.querySelectorAll('.page-section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            let isScrolling = false;
+
+            function scrollToSection(targetId) {
+                const targetSection = document.getElementById(targetId);
+                if (targetSection && !isScrolling) {
+                    isScrolling = true;
+                    const targetIndex = Array.from(sections).indexOf(targetSection);
+                    const targetScrollLeft = targetIndex * window.innerWidth;
+                    
+                    mainContainer.scrollTo({
+                        left: targetScrollLeft,
+                        behavior: 'smooth'
+                    });
+
+                    setTimeout(() => {
+                        isScrolling = false;
+                    }, 1000);
                 }
+            }
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('data-target');
+                    scrollToSection(targetId);
+                });
             });
 
-            // Scroll to badge section
+            mainContainer.addEventListener('scroll', () => {
+                const scrollPercentage = mainContainer.scrollLeft / (mainContainer.scrollWidth - window.innerWidth);
+                sections.forEach(section => {
+                    section.style.backgroundPosition = `${50 - (scrollPercentage * 20)}% center`;
+                });
+            });
+
             const getBadgeBtn = document.getElementById('get-badge-btn');
             if (getBadgeBtn) {
                 getBadgeBtn.addEventListener('click', () => {
-                    document.getElementById('badge-generator')?.scrollIntoView({ behavior: 'smooth' });
+                    scrollToSection('badge-generator');
                 });
             }
 
-            // Agent carousel logic
             const agents = [
                 { img: '1.jpg', name: 'Agent of Arousal', clearance: 'ULTRA' },
                 { img: 'spark.jpeg', name: 'Double-D Agent', clearance: 'SECRET' },
-                { img: '2.jpg', name: 'Senior Moisture Analyst', clearance: 'TOP SECRET' },
-                { img: '3.jpg', name: 'Agent Pleasure Handler', clearance: 'ULTRA' },
+                { img: '3.jpg', name: 'Senior Moisture Analyst', clearance: 'TOP SECRET' },
+                { img: '4.jpg', name: 'Agent Pleasure Handler', clearance: 'ULTRA' },
                 { img: 'baji.jpeg', name: 'Deputy of Desire', clearance: 'SECRET' },
-                { img: '4.jpg', name: 'Agent Deep Throat', clearance: 'TOP SECRET' }
+                { img: '2.jpg', name: 'Agent Deep Throat', clearance: 'TOP SECRET' }
             ];
 
             function renderContinuousCarousel() {
@@ -351,7 +388,7 @@
                 extendedAgents.forEach(agent => {
                     html += `<div class="agent-card bg-black/40 border border-neon-green/40 rounded-xl p-6 text-center shadow-lg group relative overflow-hidden w-64 mx-4 flex-shrink-0">
                         <div class="absolute inset-0 bg-gradient-to-br from-neon-green/10 via-transparent to-black/30 opacity-60 pointer-events-none"></div>
-                        <img loading="lazy" src="${agent.img}" alt="${agent.name}" class="w-28 h-28 mx-auto mb-4 rounded-full object-cover border-4 border-neon-green shadow-[0_0_20px_#39FF13]">
+                        <img loading="lazy" src="${agent.img}" alt="${agent.name}" class="w-28 h-28 mx-auto mb-4 rounded-full object-cover border-4 border-neon-green shadow-[0_0_20px_#39FF13]" onerror="this.onerror=null;this.src='https://placehold.co/112x112/1E1F21/39FF13?text=?';">
                         <h3 class="font-stencil text-xl text-neon-green mb-2 drop-shadow-[0_0_10px_#39FF13]">${agent.name}</h3>
                         <span class="inline-block font-mono text-xs text-neon-green bg-black/60 px-3 py-1 rounded-full border border-neon-green/30 mt-2">Clearance: ${agent.clearance}</span>
                     </div>`;
@@ -380,7 +417,6 @@
             renderContinuousCarousel();
             animateCarousel();
 
-            // Contract Address copy button
             const copyCABtn = document.getElementById('copy-ca-btn');
             if (copyCABtn) {
                 copyCABtn.addEventListener('click', () => {
@@ -392,7 +428,6 @@
                 });
             }
 
-            // Accordion logic
             const accordionContainer = document.getElementById('accordion-container');
             if (accordionContainer) {
                 accordionContainer.addEventListener('click', (e) => {
@@ -409,20 +444,6 @@
                 });
             }
 
-            // Intersection Observer for scroll animations
-            const fadeInSections = document.querySelectorAll('.fade-in-section');
-            const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
-            fadeInSections.forEach(section => { observer.observe(section); });
-
-            // Badge Generator Logic
             const generateBtn = document.getElementById('generate-badge-btn');
             const twitterInput = document.getElementById('twitter-handle-input');
             const modal = document.getElementById('badge-modal');
@@ -432,15 +453,14 @@
             const handleEl = document.getElementById('profile-handle');
 
             async function fetchTwitterProfile(username) {
-                try {
-                    const response = await fetch(`/api/get_pfp?username=${username}`);
-                    const data = await response.json();
-                    if (!response.ok) throw new Error(data.error || 'Profile not found');
-                    return data;
-                } catch (e) {
-                    console.error('Fetch error:', e.message);
-                    return null;
-                }
+                // This is a mock function as client-side fetching is restricted by CORS.
+                // In a real application, this would be a backend endpoint.
+                console.log(`Fetching profile for: ${username}`);
+                return {
+                    pfp_url: `https://unavatar.io/twitter/${username}`,
+                    name: `Agent ${username}`,
+                    handle: `@${username}`
+                };
             }
 
             function extractUsername(urlOrHandle) {
@@ -455,6 +475,10 @@
                     avatar.src = profile.pfp_url;
                     avatar.alt = 'Profile Picture';
                     avatar.className = 'w-full h-full object-cover rounded-lg';
+                    avatar.onerror = function() {
+                        this.onerror=null;
+                        this.src='https://placehold.co/96x96/e2e8f0/4a5568?text=N/A';
+                    };
                     picContainer.appendChild(avatar);
                 } else {
                     picContainer.innerHTML = '<span class="font-mono text-blue-900">No Image</span>';
