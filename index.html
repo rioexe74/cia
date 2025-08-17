@@ -6,11 +6,6 @@
     <title>$CIA - Clit Inspection Agency</title>
     <meta name="description" content="To Preempt Pleasure-Voids and Further Global Clitoral Security Objectives. The official intelligence portal for the $CIA meme coin.">
     
-    <!-- Chosen Palette: Spy-Fi Neon Terminal -->
-    <!-- Application Structure Plan: A linear, single-page narrative flow designed to immerse the user. The structure starts with a high-impact hero section (the hook), moves to lore-building (mission statement), provides a call to action (recruitment), showcases 'proof of work' (secret files/agents), and concludes with a highly interactive engagement tool (badge generator). This top-down approach guides the user through the parody's narrative, maximizing engagement by saving the most interactive element as a final reward. -->
-    <!-- Visualization & Content Choices: Report Info -> Goal -> Presentation -> Interaction -> Justification. 1. Mission -> Inform -> Styled Text Block -> None -> The focus is on the satirical copy, mimicking a declassified document. 2. Recruitment -> Guide -> 3-Column Card Grid -> Hover animations -> Classic, clear way to present distinct steps. 3. Secret Files -> Organize/Entertain -> JS Accordion -> Click to expand -> Mimics opening a classified file, enhancing the theme. 4. Agents -> Entertain -> Responsive Card Grid -> CSS 3D hover tilt -> Adds a modern, dynamic feel to the 'team' showcase. 5. Badge Generator -> Engage -> Canvas API in a Modal -> User input -> Provides a personalized, shareable takeaway, making the experience memorable and viral. -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
-
     <script src="https://cdn.tailwindcss.com"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,19 +13,72 @@
     <link href="https://fonts.googleapis.com/css2?family=Allerta+Stencil&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
-        body {
+       /* Animated CA Button (Header) */
+       #copy-ca-btn {
+            box-shadow: 0 0 0px #39FF13;
+            transition: box-shadow 0.3s, transform 0.3s, background 0.3s, color 0.3s;
+        }
+        #copy-ca-btn:hover, #copy-ca-btn:focus {
+            box-shadow: 0 0 18px #39FF13, 0 0 40px #39FF13 inset, 0 0 8px #fff;
+            transform: scale(1.08);
+            background: linear-gradient(90deg, #39FF13 0%, #010B12 80%);
+            color: #fff;
+        }
+       /* Neon Flicker Animation */
+       @keyframes neon-flicker {
+            0%, 100% { text-shadow: 0 0 15px #39FF13, 0 0 30px #39FF13; opacity: 1; }
+            2% { opacity: 0.7; }
+            4% { opacity: 1; }
+            8% { opacity: 0.6; }
+            10% { opacity: 1; }
+            12% { opacity: 0.8; }
+            14% { opacity: 1; }
+            16% { opacity: 0.5; }
+            18% { opacity: 1; }
+            20% { opacity: 0.9; }
+            22% { opacity: 1; }
+            24% { opacity: 0.7; }
+            26% { opacity: 1; }
+            28% { opacity: 0.6; }
+            30% { opacity: 1; }
+        }
+       .flicker {
+            animation: neon-flicker 2.2s infinite;
+        }
+       /* --- POLISHED VISUAL EFFECTS START --- */
+
+       body {
             background-color: #010B12;
             color: #39FF13;
             font-family: 'Roboto Mono', monospace;
             position: relative;
             overflow-x: hidden;
-        }
+       }
+
        .font-stencil { font-family: 'Allerta Stencil', sans-serif; }
        .font-mono { font-family: 'Roboto Mono', monospace; }
        .text-neon-green { color: #39FF13; }
        .border-neon-green { border-color: #39FF13; }
        .bg-dark-jungle-green { background-color: #1E1F21; }
 
+       /* Navigation Bar Scroll Effect */
+       #navbar {
+            transition: background-color 0.4s ease-out, box-shadow 0.4s ease-out;
+       }
+
+       /* Animated 'Get Your Badge' Button */
+       #get-badge-btn {
+            box-shadow: 0 0 0px #39FF13;
+            transition: box-shadow 0.3s, transform 0.3s, background 0.3s, color 0.3s;
+       }
+       #get-badge-btn:hover, #get-badge-btn:focus {
+            box-shadow: 0 0 18px #39FF13, 0 0 40px #39FF13 inset, 0 0 8px #fff;
+            transform: scale(1.08);
+            background: linear-gradient(90deg, #39FF13 0%, #010B12 80%);
+            color: #fff;
+       }
+       
+       /* Terminal Scanline Overlay */
        .scanline-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             pointer-events: none; z-index: 1;
@@ -41,160 +89,178 @@
             background-size: 100% 4px;
             animation: scan 15s linear infinite;
         }
-        @keyframes scan {
+       @keyframes scan {
             0% { background-position: 0 0; }
             100% { background-position: 0 100vh; }
-        }
+       }
        .scanline-overlay::after {
             content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background: radial-gradient(ellipse at center, rgba(0, 255, 0, 0.05) 0%, transparent 70%);
             opacity: 0.5;
-        }
+       }
 
+       /* Accordion Polish */
        .accordion-content {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
-        }
+            transition: max-height 0.5s cubic-bezier(0, 1, 0, 1), padding 0.5s ease-out;
+            padding: 0 1rem; /* p-4 */
+       }
        .accordion-item.active .accordion-content {
             max-height: 1000px;
-            transition: max-height 1s ease-in-out;
-        }
+            transition: max-height 1s ease-in-out, padding 0.5s ease-in;
+            padding: 1rem; /* p-4 */
+       }
        .accordion-item.active .accordion-toggle-icon {
             transform: rotate(45deg);
-        }
+       }
+       .accordion-header {
+           transition: background-color 0.3s ease;
+       }
 
+       /* Scroll Fade-in Effect */
        .fade-in-section {
             opacity: 0;
             transform: translateY(30px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
+            transition: opacity 0.8s cubic-bezier(0.645, 0.045, 0.355, 1), transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+       }
        .fade-in-section.is-visible {
             opacity: 1;
             transform: translateY(0);
-        }
+       }
+        
+       /* Agent Carousel Effects */
+       .mask-gradient {
+            -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 100%);
+            mask-image: linear-gradient(to right, transparent 0%, black 15%, black 100%);
+       }
+
+       #agent-carousel .agent-card {
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.4s ease-out, box-shadow 0.4s ease-out;
+       }
+        
+       #agent-carousel .agent-card:hover {
+            transform: translateY(-12px) scale(1.08) perspective(1000px) rotateY(2deg);
+            box-shadow: 0 10px 40px rgba(57, 255, 19, 0.5);
+            z-index: 10;
+       }
+        
+       /* Glowing border on hover */
+       #agent-carousel .agent-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 0.75rem; /* 12px */
+            border: 2px solid transparent;
+            background: linear-gradient(45deg, #39FF13, #00fffb) border-box;
+            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: destination-out;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.4s ease-out;
+       }
+        
+       #agent-carousel .agent-card:hover::before {
+            opacity: 1;
+       }
+        
+       /* Modern CSS Image Effect on Hover */
+       #agent-carousel .agent-card img {
+            transition: filter 0.4s ease-out, transform 0.4s ease-out;
+            filter: grayscale(80%) contrast(1.1);
+       }
+        
+       #agent-carousel .agent-card:hover img {
+            filter: grayscale(0%) brightness(1.1) contrast(1);
+            transform: scale(1.05);
+       }
+
+       /* Parallax effect for header background */
+       #home {
+           background-attachment: fixed;
+       }
+
+       /* --- POLISHED VISUAL EFFECTS END --- */
     </style>
 </head>
 <body class="antialiased">
 
     <div class="scanline-overlay"></div>
 
-    <nav class="fixed top-0 left-0 right-0 bg-black/50 backdrop-blur-sm border-b border-neon-green/20 z-50">
+    <nav id="navbar" class="fixed top-0 left-0 right-0 bg-black/50 backdrop-blur-sm border-b border-neon-green/20 z-50">
         <div class="container mx-auto flex justify-between items-center p-4 font-mono uppercase">
-            <a href="#home" class="font-stencil text-xl text-white hover:text-neon-green transition-colors">$CIA</a>
+            <a href="#home" class="font-stencil text-xl text-white hover:text-neon-green transition-colors duration-300">$CIA</a>
             <button id="copy-ca-btn" class="mx-auto font-mono px-4 py-2 bg-black/80 border border-neon-green text-neon-green rounded-lg hover:bg-neon-green hover:text-black transition-all duration-300" style="font-size:1rem;">CA: 00000000000</button>
             <div class="hidden md:flex space-x-6 text-sm">
-                <a href="#files" class="hover:text-white transition-colors">Files</a>
-                <a href="#agents" class="hover:text-white transition-colors">Agents</a>
+                <a href="#files" class="hover:text-white transition-colors duration-300">Files</a>
+                <a href="#badge-generator" class="hover:text-white transition-colors duration-300">Badge</a>
             </div>
         </div>
     </nav>
 
     <main>
-        <header id="home" class="relative flex items-center justify-center h-screen overflow-hidden" style="background: url('the lab.jpg') center center/cover no-repeat;">
+        <header id="home" class="relative flex items-center justify-center h-screen overflow-hidden" style="background-image: url('the lab.jpg'); background-size: cover; background-position: center center;">
             <div class="absolute inset-0 bg-black opacity-60 z-20"></div>
-            <div class="relative z-30 text-center p-5">
-                <h1 class="font-stencil text-5xl md:text-7xl lg:text-8xl text-white uppercase tracking-widest" style="text-shadow: 0 0 15px #39FF13;">$CIA</h1>
-                <p class="font-mono text-xl md:text-3xl mt-4 text-neon-green">Clit Inspection Agency</p>
-                <p class="font-mono text-md md:text-lg mt-8 max-w-2xl mx-auto text-gray-300">To Preempt Pleasure-Voids and Further Global Clitoral Security Objectives.</p>
-                <button id="open-badge-btn" class="mt-12 inline-block font-mono uppercase px-8 py-3 border-2 border-neon-green text-neon-green bg-black/70 hover:bg-neon-green hover:text-black transition-all duration-300 rounded-lg hover:shadow-[0_0_20px_#39FF13]">Get Your ID Badge</button>
+            <div class="absolute left-0 top-1/2 transform -translate-y-1/2 z-30 flex flex-row items-center justify-between p-8 w-full">
+                <div class="flex flex-col items-start mr-12">
+                    <h1 class="font-stencil text-5xl md:text-7xl lg:text-8xl text-white uppercase tracking-widest flicker" style="text-shadow: 0 0 15px #39FF13;">$CIA</h1>
+                    <p class="font-mono text-xl md:text-3xl mt-2 text-neon-green flicker">Clit Inspection Agency</p>
+                    <button id="get-badge-btn" class="mt-8 px-6 py-2 text-base font-mono bg-black/80 border border-neon-green text-neon-green rounded-lg shadow-lg">Get Your Badge</button>
+                </div>
+                
+                <div class="flex flex-col ml-auto mt-24">
+                    <h2 class="font-stencil text-3xl uppercase text-white mb-2 tracking-widest self-end pr-4" style="text-shadow: 0 0 10px #39FF13;">Agents</h2>
+                    <div class="relative w-[800px] h-[320px] flex items-center justify-end mask-gradient">
+                        <div id="agent-carousel" class="flex overflow-hidden w-full h-full px-4 pt-8 pb-4">
+                            <!-- Agent Cards will be injected by JS -->
+                        </div>
+                    </div>
+                </div>
             </div>
         </header>
 
-
-
-        <section id="files" class="relative py-20 px-4 border-t-2 border-b-2 border-neon-green/20 fade-in-section" style="background: url('conference hall.jpg') center center/cover no-repeat;">
+        <section id="files" class="relative py-20 px-4 border-t-2 border-b-2 border-neon-green/20 fade-in-section" style="background-image: url('conference hall.jpg'); background-size: cover; background-position: center center;">
             <div class="absolute inset-0 bg-black opacity-70 z-10"></div>
             <div class="container mx-auto max-w-4xl relative z-20">
             <h2 class="font-stencil text-4xl text-center uppercase text-white mb-12">Top Secret Files</h2>
             <div id="accordion-container" class="space-y-4 font-mono">
-                <div class="accordion-item border border-neon-green/30">
-                <button class="accordion-header w-full text-left p-4 flex justify-between items-center bg-black/20 hover:bg-black/40 transition-colors">
+                <div class="accordion-item border border-neon-green/30 rounded-lg overflow-hidden">
+                <button class="accordion-header w-full text-left p-4 flex justify-between items-center bg-black/20 hover:bg-black/40">
                     <span class="text-neon-green">OPERATION: FAST & LOOSE</span>
                     <span class="accordion-toggle-icon text-neon-green transform transition-transform duration-300 text-2xl">+</span>
                 </button>
                 <div class="accordion-content">
-                    <p class="p-4 text-gray-300 border-t border-neon-green/30">A high-stakes mission to infiltrate European nightclubs. Objective: assess and report on the structural integrity of G-spots under extreme duress. High risk of pleasure-induced compromise.</p>
+                    <p class="text-gray-300 border-t border-neon-green/30 pt-4">A high-stakes mission to infiltrate European nightclubs. Objective: assess and report on the structural integrity of G-spots under extreme duress. High risk of pleasure-induced compromise.</p>
                 </div>
                 </div>
-                <div class="accordion-item border border-neon-green/30">
-                <button class="accordion-header w-full text-left p-4 flex justify-between items-center bg-black/20 hover:bg-black/40 transition-colors">
+                <div class="accordion-item border border-neon-green/30 rounded-lg overflow-hidden">
+                <button class="accordion-header w-full text-left p-4 flex justify-between items-center bg-black/20 hover:bg-black/40">
                     <span class="text-neon-green">PROJECT: PLEASURE DOME</span>
                     <span class="accordion-toggle-icon text-neon-green transform transition-transform duration-300 text-2xl">+</span>
                 </button>
                 <div class="accordion-content">
-                    <p class="p-4 text-gray-300 border-t border-neon-green/30">Development of next-generation tactile interrogation techniques. Field tests have shown a 98% success rate in extracting moans of approval. Project currently on hold pending ethics review.</p>
+                    <p class="text-gray-300 border-t border-neon-green/30 pt-4">Development of next-generation tactile interrogation techniques. Field tests have shown a 98% success rate in extracting moans of approval. Project currently on hold pending ethics review.</p>
                 </div>
                 </div>
-                <div class="accordion-item border border-neon-green/30">
-                <button class="accordion-header w-full text-left p-4 flex justify-between items-center bg-black/20 hover:bg-black/40 transition-colors">
+                <div class="accordion-item border border-neon-green/30 rounded-lg overflow-hidden">
+                <button class="accordion-header w-full text-left p-4 flex justify-between items-center bg-black/20 hover:bg-black/40">
                     <span class="text-neon-green">DOSSIER: THE ORGASM ALGORITHM</span>
                     <span class="accordion-toggle-icon text-neon-green transform transition-transform duration-300 text-2xl">+</span>
                 </button>
                 <div class="accordion-content">
-                    <p class="p-4 text-gray-300 border-t border-neon-green/30">An ongoing analysis of predictive patterns in arousal metrics. AI-driven models are being trained to anticipate climax events with 99.7% accuracy. Data sourced from anonymous field reports.</p>
+                    <p class="text-gray-300 border-t border-neon-green/30 pt-4">An ongoing analysis of predictive patterns in arousal metrics. AI-driven models are being trained to anticipate climax events with 99.7% accuracy. Data sourced from anonymous field reports.</p>
                 </div>
                 </div>
             </div>
             </div>
         </section>
-        <section id="agents" class="relative py-20 px-4 border-t-2 border-b-2 border-neon-green/20 fade-in-section" style="background: url('empty lab3.jpg') center center/cover no-repeat;">
-            <div class="absolute inset-0 bg-black opacity-75 z-10"></div>
-            <div class="container mx-auto relative z-20">
-                <h2 class="font-stencil text-4xl text-center uppercase text-white mb-12 tracking-widest drop-shadow-[0_0_15px_#39FF13]">Meet The Agents</h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-                    <!-- Agent Card -->
-                    <div class="agent-card bg-black/40 border border-neon-green/40 rounded-xl p-8 text-center shadow-[0_0_30px_rgba(57,255,19,0.25)] transition-all duration-300 hover:-translate-y-2 hover:scale-105 hover:shadow-[0_0_40px_#39FF13] group relative overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-br from-neon-green/10 via-transparent to-black/30 opacity-60 pointer-events-none"></div>
-                        <img loading="lazy" src="naruto.jpeg" alt="Agent Velvet Glove" class="w-32 h-32 mx-auto mb-5 rounded-full object-cover border-4 border-neon-green shadow-[0_0_20px_#39FF13] grayscale group-hover:grayscale-0 transition-all duration-300">
-                        <h3 class="font-stencil text-2xl text-neon-green mb-2 drop-shadow-[0_0_10px_#39FF13]">Agent Velvet Glove</h3>
-                        <p class="font-mono text-gray-300 mb-2">Director of Clit Ops</p>
-                        <span class="inline-block font-mono text-xs text-neon-green bg-black/60 px-3 py-1 rounded-full border border-neon-green/30 mt-2">Clearance: ULTRA</span>
-                    </div>
-                    <!-- Agent Card -->
-                    <div class="agent-card bg-black/40 border border-neon-green/40 rounded-xl p-8 text-center shadow-[0_0_30px_rgba(57,255,19,0.25)] transition-all duration-300 hover:-translate-y-2 hover:scale-105 hover:shadow-[0_0_40px_#39FF13] group relative overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-br from-neon-green/10 via-transparent to-black/30 opacity-60 pointer-events-none"></div>
-                        <img loading="lazy" src="spark.jpeg" alt="Senior Lipstick Analyst" class="w-32 h-32 mx-auto mb-5 rounded-full object-cover border-4 border-neon-green shadow-[0_0_20px_#39FF13] grayscale group-hover:grayscale-0 transition-all duration-300">
-                        <h3 class="font-stencil text-2xl text-neon-green mb-2 drop-shadow-[0_0_10px_#39FF13]">Senior Lipstick Analyst</h3>
-                        <p class="font-mono text-gray-300 mb-2">Head of Covert Cosmetics</p>
-                        <span class="inline-block font-mono text-xs text-neon-green bg-black/60 px-3 py-1 rounded-full border border-neon-green/30 mt-2">Clearance: SECRET</span>
-                    </div>
-                    <!-- Agent Card -->
-                    <div class="agent-card bg-black/40 border border-neon-green/40 rounded-xl p-8 text-center shadow-[0_0_30px_rgba(57,255,19,0.25)] transition-all duration-300 hover:-translate-y-2 hover:scale-105 hover:shadow-[0_0_40px_#39FF13] group relative overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-br from-neon-green/10 via-transparent to-black/30 opacity-60 pointer-events-none"></div>
-                        <img loading="lazy" src="shhh.jpeg" alt="The Whisperer" class="w-32 h-32 mx-auto mb-5 rounded-full object-cover border-4 border-neon-green shadow-[0_0_20px_#39FF13] grayscale group-hover:grayscale-0 transition-all duration-300">
-                        <h3 class="font-stencil text-2xl text-neon-green mb-2 drop-shadow-[0_0_10px_#39FF13]">The Whisperer</h3>
-                        <p class="font-mono text-gray-300 mb-2">Chief Interrogation Tickler</p>
-                        <span class="inline-block font-mono text-xs text-neon-green bg-black/60 px-3 py-1 rounded-full border border-neon-green/30 mt-2">Clearance: TOP SECRET</span>
-                    </div>
-                    <!-- Agent Card -->
-                    <div class="agent-card bg-black/40 border border-neon-green/40 rounded-xl p-8 text-center shadow-[0_0_30px_rgba(57,255,19,0.25)] transition-all duration-300 hover:-translate-y-2 hover:scale-105 hover:shadow-[0_0_40px_#39FF13] group relative overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-br from-neon-green/10 via-transparent to-black/30 opacity-60 pointer-events-none"></div>
-                        <img loading="lazy" src="Ghost god.jpeg" alt="Agent Provocateur" class="w-32 h-32 mx-auto mb-5 rounded-full object-cover border-4 border-neon-green shadow-[0_0_20px_#39FF13] grayscale group-hover:grayscale-0 transition-all duration-300">
-                        <h3 class="font-stencil text-2xl text-neon-green mb-2 drop-shadow-[0_0_10px_#39FF13]">Agent Provocateur</h3>
-                        <p class="font-mono text-gray-300 mb-2">Field Operations Specialist</p>
-                        <span class="inline-block font-mono text-xs text-neon-green bg-black/60 px-3 py-1 rounded-full border border-neon-green/30 mt-2">Clearance: ULTRA</span>
-                    </div>
-                    <!-- Agent Card -->
-                    <div class="agent-card bg-black/40 border border-neon-green/40 rounded-xl p-8 text-center shadow-[0_0_30px_rgba(57,255,19,0.25)] transition-all duration-300 hover:-translate-y-2 hover:scale-105 hover:shadow-[0_0_40px_#39FF13] group relative overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-br from-neon-green/10 via-transparent to-black/30 opacity-60 pointer-events-none"></div>
-                        <img loading="lazy" src="baji.jpeg" alt="Deep Throat" class="w-32 h-32 mx-auto mb-5 rounded-full object-cover border-4 border-neon-green shadow-[0_0_20px_#39FF13] grayscale group-hover:grayscale-0 transition-all duration-300">
-                        <h3 class="font-stencil text-2xl text-neon-green mb-2 drop-shadow-[0_0_10px_#39FF13]">Deep Throat</h3>
-                        <p class="font-mono text-gray-300 mb-2">Senior Intelligence Handler</p>
-                        <span class="inline-block font-mono text-xs text-neon-green bg-black/60 px-3 py-1 rounded-full border border-neon-green/30 mt-2">Clearance: SECRET</span>
-                    </div>
-                    <!-- Agent Card -->
-                    <div class="agent-card bg-black/40 border border-neon-green/40 rounded-xl p-8 text-center shadow-[0_0_30px_rgba(57,255,19,0.25)] transition-all duration-300 hover:-translate-y-2 hover:scale-105 hover:shadow-[0_0_40px_#39FF13] group relative overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-br from-neon-green/10 via-transparent to-black/30 opacity-60 pointer-events-none"></div>
-                        <img loading="lazy" src="Gojo Satoru.jpeg" alt="Master Baiter" class="w-32 h-32 mx-auto mb-5 rounded-full object-cover border-4 border-neon-green shadow-[0_0_20px_#39FF13] grayscale group-hover:grayscale-0 transition-all duration-300">
-                        <h3 class="font-stencil text-2xl text-neon-green mb-2 drop-shadow-[0_0_10px_#39FF13]">Master Baiter</h3>
-                        <p class="font-mono text-gray-300 mb-2">Lures & Traps Division</p>
-                        <span class="inline-block font-mono text-xs text-neon-green bg-black/60 px-3 py-1 rounded-full border border-neon-green/30 mt-2">Clearance: TOP SECRET</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section id="badge-generator" class="relative py-20 px-4 fade-in-section" style="background: url('the lab.jpg') center center/cover no-repeat;">
+        
+        <section id="badge-generator" class="relative py-20 px-4 fade-in-section" style="background-image: url('the lab.jpg'); background-size: cover; background-position: center center; background-attachment: fixed;">
             <div class="absolute inset-0 bg-black opacity-70 z-10"></div>
             <div class="container mx-auto max-w-2xl text-center relative z-20">
                 <h2 class="font-stencil text-4xl uppercase text-neon-green mb-6 drop-shadow-[0_0_15px_#39FF13]">Issue Field Credentials</h2>
@@ -204,7 +270,7 @@
                     <button id="generate-badge-btn" class="font-mono uppercase px-8 py-3 border-2 border-neon-green text-neon-green bg-black/70 hover:bg-neon-green hover:text-black transition-all duration-300 rounded-lg hover:shadow-[0_0_20px_#39FF13]">Issue Clearance</button>
                 </div>
             </div>
-            <div id="badge-modal" class="fixed inset-0 bg-black/80 hidden items-center justify-center z-50 p-4">
+            <div id="badge-modal" class="fixed inset-0 bg-black/80 hidden items-center justify-center z-50 p-4 backdrop-blur-sm">
                 <div class="relative bg-dark-jungle-green p-6 border-2 border-neon-green rounded-xl shadow-[0_0_40px_#39FF13] max-w-md w-full flex flex-col items-center">
                     <button id="close-modal-btn" class="absolute -top-4 -right-4 text-neon-green bg-black border-2 border-neon-green rounded-full w-10 h-10 font-bold flex items-center justify-center text-xl hover:bg-neon-green hover:text-black transition-all duration-300 shadow-[0_0_10px_#39FF13]">×</button>
                     <div id="cia-card" class="w-[420px] h-[260px] bg-white rounded-2xl shadow-lg border-4 border-blue-900 flex flex-col justify-between relative overflow-hidden">
@@ -247,6 +313,74 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // --- NEW: Navbar scroll effect ---
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+                    navbar.style.boxShadow = '0 4px 12px rgba(57, 255, 19, 0.2)';
+                } else {
+                    navbar.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+                    navbar.style.boxShadow = 'none';
+                }
+            });
+
+            // Scroll to badge section
+            const getBadgeBtn = document.getElementById('get-badge-btn');
+            if (getBadgeBtn) {
+                getBadgeBtn.addEventListener('click', () => {
+                    document.getElementById('badge-generator')?.scrollIntoView({ behavior: 'smooth' });
+                });
+            }
+
+            // Agent carousel logic
+            const agents = [
+                { img: '1.jpg', name: 'Agent of Arousal', clearance: 'ULTRA' },
+                { img: 'spark.jpeg', name: 'Double-D Agent', clearance: 'SECRET' },
+                { img: '2.jpg', name: 'Senior Moisture Analyst', clearance: 'TOP SECRET' },
+                { img: '3.jpg', name: 'Agent Pleasure Handler', clearance: 'ULTRA' },
+                { img: 'baji.jpeg', name: 'Deputy of Desire', clearance: 'SECRET' },
+                { img: '4.jpg', name: 'Agent Deep Throat', clearance: 'TOP SECRET' }
+            ];
+
+            function renderContinuousCarousel() {
+                const carousel = document.getElementById('agent-carousel');
+                if (!carousel) return;
+                let html = '';
+                const extendedAgents = [...agents, ...agents, ...agents];
+                extendedAgents.forEach(agent => {
+                    html += `<div class="agent-card bg-black/40 border border-neon-green/40 rounded-xl p-6 text-center shadow-lg group relative overflow-hidden w-64 mx-4 flex-shrink-0">
+                        <div class="absolute inset-0 bg-gradient-to-br from-neon-green/10 via-transparent to-black/30 opacity-60 pointer-events-none"></div>
+                        <img loading="lazy" src="${agent.img}" alt="${agent.name}" class="w-28 h-28 mx-auto mb-4 rounded-full object-cover border-4 border-neon-green shadow-[0_0_20px_#39FF13]">
+                        <h3 class="font-stencil text-xl text-neon-green mb-2 drop-shadow-[0_0_10px_#39FF13]">${agent.name}</h3>
+                        <span class="inline-block font-mono text-xs text-neon-green bg-black/60 px-3 py-1 rounded-full border border-neon-green/30 mt-2">Clearance: ${agent.clearance}</span>
+                    </div>`;
+                });
+                carousel.innerHTML = html;
+            }
+
+            let animationFrameId;
+            function animateCarousel() {
+                const carousel = document.getElementById('agent-carousel');
+                if (!carousel) return;
+                let scrollLeft = 0;
+                const scrollSpeed = 0.8; 
+
+                function scroll() {
+                    scrollLeft += scrollSpeed;
+                    if (scrollLeft >= carousel.scrollWidth / 3) {
+                        scrollLeft = 0;
+                    }
+                    carousel.scrollLeft = scrollLeft;
+                    animationFrameId = requestAnimationFrame(scroll);
+                }
+                scroll();
+            }
+
+            renderContinuousCarousel();
+            animateCarousel();
+
+            // Contract Address copy button
             const copyCABtn = document.getElementById('copy-ca-btn');
             if (copyCABtn) {
                 copyCABtn.addEventListener('click', () => {
@@ -257,15 +391,8 @@
                     }, 1200);
                 });
             }
-            const openBadgeBtn = document.getElementById('open-badge-btn');
-            if (openBadgeBtn) {
-                openBadgeBtn.addEventListener('click', () => {
-                    const badgeSection = document.getElementById('badge-generator');
-                    if (badgeSection) {
-                        badgeSection.scrollIntoView({ behavior: 'smooth' });
-                    }
-                });
-            }
+
+            // Accordion logic
             const accordionContainer = document.getElementById('accordion-container');
             if (accordionContainer) {
                 accordionContainer.addEventListener('click', (e) => {
@@ -282,8 +409,9 @@
                 });
             }
 
+            // Intersection Observer for scroll animations
             const fadeInSections = document.querySelectorAll('.fade-in-section');
-            const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+            const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
             const observer = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -294,6 +422,7 @@
             }, observerOptions);
             fadeInSections.forEach(section => { observer.observe(section); });
 
+            // Badge Generator Logic
             const generateBtn = document.getElementById('generate-badge-btn');
             const twitterInput = document.getElementById('twitter-handle-input');
             const modal = document.getElementById('badge-modal');
@@ -304,35 +433,25 @@
 
             async function fetchTwitterProfile(username) {
                 try {
-                    // Use Vercel serverless endpoint
                     const response = await fetch(`/api/get_pfp?username=${username}`);
-                    let data;
-                    try {
-                        data = await response.json();
-                    } catch (e) {
-                        console.error('Failed to parse JSON:', e);
-                        throw new Error('Invalid backend response');
-                    }
-                    if (!response.ok) {
-                        console.error('Backend error:', data);
-                        throw new Error('Profile not found');
-                    }
-                    console.log('Backend response:', data);
+                    const data = await response.json();
+                    if (!response.ok) throw new Error(data.error || 'Profile not found');
                     return data;
                 } catch (e) {
+                    console.error('Fetch error:', e.message);
                     return null;
                 }
             }
+
             function extractUsername(urlOrHandle) {
-                let match = urlOrHandle.match(/(?:x.com\/|twitter.com\/)?([A-Za-z0-9_]{1,15})/);
-                if (match) return match[1];
-                return urlOrHandle.replace('@','').trim();
+                const match = urlOrHandle.match(/(?:x.com\/|twitter.com\/)?([A-Za-z0-9_]{1,15})/);
+                return match ? match[1] : urlOrHandle.replace('@','').trim();
             }
+
             async function drawBadgeWithProfile(profile) {
                 picContainer.innerHTML = '';
-                let avatar;
                 if (profile && profile.pfp_url) {
-                    avatar = document.createElement('img');
+                    const avatar = document.createElement('img');
                     avatar.src = profile.pfp_url;
                     avatar.alt = 'Profile Picture';
                     avatar.className = 'w-full h-full object-cover rounded-lg';
@@ -340,24 +459,27 @@
                 } else {
                     picContainer.innerHTML = '<span class="font-mono text-blue-900">No Image</span>';
                 }
-                // Set name in dedicated section below image (outside image container)
+                
                 const nameSection = document.getElementById('profile-name-section');
                 if (nameSection) {
                     nameSection.innerHTML = '';
                     const nameSpan = document.createElement('span');
                     nameSpan.id = 'profile-name-under-pic';
                     nameSpan.className = 'font-mono text-blue-900 text-base font-bold bg-white rounded px-2 py-1 shadow';
-                    nameSpan.textContent = (profile?.name || 'AGENT REDACTED');
+                    nameSpan.textContent = profile?.name || 'AGENT REDACTED';
                     nameSection.appendChild(nameSpan);
                 }
+                
                 nameEl.textContent = (profile?.name || 'AGENT REDACTED').toUpperCase();
-                handleEl.textContent = (profile?.handle || '@AGENT_REDACTED');
+                handleEl.textContent = profile?.handle || '@AGENT_REDACTED';
                 modal.classList.remove('hidden');
                 modal.classList.add('flex');
             }
+
             generateBtn.addEventListener('click', async () => {
                 const input = twitterInput.value.trim();
                 const username = extractUsername(input);
+                if (!username) return;
                 const profile = await fetchTwitterProfile(username);
                 await drawBadgeWithProfile(profile);
             });
@@ -369,9 +491,7 @@
 
             closeModalBtn.addEventListener('click', closeModal);
             modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    closeModal();
-                }
+                if (e.target === modal) closeModal();
             });
         });
     </script>
