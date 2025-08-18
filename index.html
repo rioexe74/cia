@@ -7,6 +7,7 @@
     <meta name="description" content="To Preempt Pleasure-Voids and Further Global Clitoral Security Objectives. The official intelligence portal for the $CIA meme coin.">
     
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -201,6 +202,53 @@
             filter: grayscale(0%) brightness(1.1) contrast(1);
             transform: scale(1.05);
         }
+        
+        /* New Styles */
+        .quiz-option {
+            transition: all 0.3s ease;
+        }
+        .quiz-option:hover {
+            background-color: rgba(57, 255, 19, 0.15) !important;
+            box-shadow: 0 0 10px rgba(57, 255, 19, 0.5);
+        }
+        .quiz-option.selected {
+            background-color: rgba(57, 255, 19, 0.25) !important;
+            box-shadow: 0 0 15px rgba(57, 255, 19, 0.7);
+        }
+        .quiz-option.correct {
+            background-color: rgba(57, 255, 19, 0.35) !important;
+            box-shadow: 0 0 20px rgba(57, 255, 19, 0.9);
+        }
+        .quiz-option.incorrect {
+            background-color: rgba(255, 0, 0, 0.25) !important;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
+        }
+        .research-card {
+            transition: all 0.4s ease;
+        }
+        .research-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(57, 255, 19, 0.4);
+        }
+        .progress-bar {
+            height: 6px;
+            background-color: rgba(57, 255, 19, 0.2);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background-color: #39FF13;
+            transition: width 0.5s ease;
+        }
+        .badge-result {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(57, 255, 19, 0.7); }
+            70% { box-shadow: 0 0 0 20px rgba(57, 255, 19, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(57, 255, 19, 0); }
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -212,8 +260,21 @@
             <a href="#home" data-target="home" class="nav-link font-stencil text-xl text-white hover:text-neon-green transition-colors duration-300">$CIA</a>
             <button id="copy-ca-btn" class="mx-auto font-mono px-4 py-2 bg-black/80 border border-neon-green text-neon-green rounded-lg hover:bg-neon-green hover:text-black transition-all duration-300" style="font-size:1rem;">CA: 00000000000</button>
             <div class="hidden md:flex space-x-6 text-sm">
-                <a href="#files" data-target="files" class="nav-link hover:text-white transition-colors duration-300">Files</a>
+                <a href="#agent-test" data-target="agent-test" class="nav-link hover:text-white transition-colors duration-300">Agent Test</a> 
                 <a href="#badge-generator" data-target="badge-generator" class="nav-link hover:text-white transition-colors duration-300">Badge</a>
+                <a href="#files" data-target="files" class="nav-link hover:text-white transition-colors duration-300">Files</a>
+            </div>
+            <button id="mobile-menu-btn" class="md:hidden text-neon-green">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-black/90 backdrop-blur-sm">
+            <div class="flex flex-col py-4 space-y-3">
+                <a href="#files" data-target="files" class="nav-link px-6 py-2 hover:bg-black/30">Files</a>
+                <a href="#badge-generator" data-target="badge-generator" class="nav-link px-6 py-2 hover:bg-black/30">Badge</a>
+                <a href="#agent-test" data-target="agent-test" class="nav-link px-6 py-2 hover:bg-black/30">Agent Test</a>
+                
             </div>
         </div>
     </nav>
@@ -232,13 +293,73 @@
                     <h2 class="font-stencil text-3xl uppercase text-white mb-2 tracking-widest self-end pr-4" style="text-shadow: 0 0 10px #39FF13;">Agents</h2>
                     <div class="relative w-[800px] h-[320px] flex items-center justify-end mask-gradient">
                         <div id="agent-carousel" class="flex overflow-hidden w-full h-full px-4 pt-8 pb-4">
+                            <!-- Agent carousel will be populated by JS -->
                         </div>
                     </div>
                 </div>
             </div>
         </header>
-
-        <section id="files" class="page-section flex items-center justify-center" style="background-image: url('bg2.jpg');">
+        <!-- New Section: Agent Test -->
+        <section id="agent-test" class="page-section flex items-center justify-center" style="background-image: url('bg2.jpg');">
+            <div class="absolute inset-0 bg-black opacity-70 z-10"></div>
+            <div class="container mx-auto max-w-3xl relative z-20 p-6">
+                <h2 class="font-stencil text-4xl text-center uppercase text-neon-green mb-6 drop-shadow-[0_0_15px_#39FF13]">Agent Test</h2>
+                <p class="font-mono text-gray-300 text-center mb-8"></p>
+                
+                <div id="quiz-container" class="bg-black/40 border border-neon-green/30 rounded-xl p-6">
+                    <div id="quiz-header" class="mb-6">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-mono text-neon-green">Question <span id="current-question">1</span>/<span id="total-questions">5</span></span>
+                            <span class="font-mono text-neon-green">Score: <span id="quiz-score">0</span></span>
+                        </div>
+                        <div class="progress-bar">
+                            <div id="progress-fill" class="progress-fill" style="width: 20%"></div>
+                        </div>
+                    </div>
+                    
+                    <div id="quiz-question" class="font-mono text-xl text-white mb-6 min-h-[80px]">
+                        <!-- Question will be loaded here -->
+                    </div>
+                    
+                    <div id="quiz-options" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                        <!-- Options will be loaded here -->
+                    </div>
+                    
+                    <div id="quiz-result" class="hidden text-center p-6 border border-neon-green/30 rounded-xl">
+                        <h3 class="font-stencil text-3xl text-neon-green mb-4" id="result-title">AGENT TEST COMPLETE</h3>
+                        <p class="font-mono text-gray-300 mb-6" id="result-description">Your performance has been evaluated. Report to debriefing.</p>
+                        <div id="result-badge" class="badge-result inline-block px-6 py-3 bg-black/70 border-2 border-neon-green rounded-xl">
+                            <span class="font-stencil text-2xl text-neon-green" id="badge-title">LEVEL 1 AGENT</span>
+                        </div>
+                        <button id="restart-quiz-btn" class="mt-8 font-mono px-6 py-2 bg-black/70 border border-neon-green text-neon-green rounded-lg hover:bg-neon-green hover:text-black transition-all">RETEST AGENT</button>
+                    </div>
+                    
+                    <div id="quiz-controls" class="flex justify-between">
+                        <button id="prev-question-btn" class="font-mono px-4 py-2 bg-black/70 border border-neon-green text-neon-green rounded-lg hover:bg-neon-green hover:text-black transition-all opacity-50 cursor-not-allowed" disabled>
+                            <i class="fas fa-arrow-left mr-2"></i>Previous
+                        </button>
+                        <button id="next-question-btn" class="font-mono px-4 py-2 bg-black/70 border border-neon-green text-neon-green rounded-lg hover:bg-neon-green hover:text-black transition-all">
+                            Next <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        
+        <section id="badge-generator" class="page-section flex items-center justify-center" style="background-image: url('bg3.jpg');">
+            <div class="absolute inset-0 bg-black opacity-70 z-10"></div>
+            <div class="container mx-auto max-w-2xl text-center relative z-20 p-4">
+                <h2 class="font-stencil text-4xl uppercase text-neon-green mb-6 drop-shadow-[0_0_15px_#39FF13]">Issue Field Credentials</h2>
+                <p class="font-mono text-gray-300 mb-8">Enter your operative handle (Twitter/X) to generate your official <span class="text-neon-green">$CIA Agent ID badge</span>.</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+                    <input type="text" id="twitter-handle-input" placeholder="@YourHandle" class="font-mono bg-black/70 border border-neon-green/50 text-neon-green p-3 text-center sm:text-left flex-grow focus:outline-none focus:ring-2 focus:ring-neon-green rounded-lg shadow-[0_0_10px_#39FF13] transition-all duration-300">
+                    <button id="generate-badge-btn" class="font-mono uppercase px-8 py-3 border-2 border-neon-green text-neon-green bg-black/70 hover:bg-neon-green hover:text-black transition-all duration-300 rounded-lg hover:shadow-[0_0_20px_#39FF13]">Issue Clearance</button>
+                </div>
+            </div>
+        </section>
+        
+        <section id="files" class="page-section flex items-center justify-center" style="background-image: url('bg4.jpg');">
             <div class="absolute inset-0 bg-black opacity-70 z-10"></div>
             <div class="container mx-auto max-w-4xl relative z-20 p-4">
             <h2 class="font-stencil text-4xl text-center uppercase text-white mb-12">Top Secret Files</h2>
@@ -274,17 +395,7 @@
             </div>
         </section>
         
-        <section id="badge-generator" class="page-section flex items-center justify-center" style="background-image: url('bg3.jpg');">
-            <div class="absolute inset-0 bg-black opacity-70 z-10"></div>
-            <div class="container mx-auto max-w-2xl text-center relative z-20 p-4">
-                <h2 class="font-stencil text-4xl uppercase text-neon-green mb-6 drop-shadow-[0_0_15px_#39FF13]">Issue Field Credentials</h2>
-                <p class="font-mono text-gray-300 mb-8">Enter your operative handle (Twitter/X) to generate your official <span class="text-neon-green">$CIA Agent ID badge</span>.</p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-                    <input type="text" id="twitter-handle-input" placeholder="@YourHandle" class="font-mono bg-black/70 border border-neon-green/50 text-neon-green p-3 text-center sm:text-left flex-grow focus:outline-none focus:ring-2 focus:ring-neon-green rounded-lg shadow-[0_0_10px_#39FF13] transition-all duration-300">
-                    <button id="generate-badge-btn" class="font-mono uppercase px-8 py-3 border-2 border-neon-green text-neon-green bg-black/70 hover:bg-neon-green hover:text-black transition-all duration-300 rounded-lg hover:shadow-[0_0_20px_#39FF13]">Issue Clearance</button>
-                </div>
-            </div>
-        </section>
+       
     </main>
 
     <footer class="fixed bottom-0 left-0 right-0 py-4 px-4 border-t-2 border-neon-green/20 text-center font-mono text-gray-500 text-xs bg-black/50 backdrop-blur-sm z-50">
@@ -306,18 +417,21 @@
                     </div>
                     <div class="flex flex-col items-center">
                         <div id="profile-pic-container" class="w-24 h-24 rounded-lg border-2 border-blue-900 bg-gray-200 flex items-center justify-center overflow-hidden">
+                            <i class="fas fa-user-secret text-blue-900 text-4xl"></i>
                         </div>
                     </div>
                 </div>
-                <div id="profile-name-section" class="w-full flex flex-col items-center justify-center mt-2"></div>
+                <div id="profile-name-section" class="w-full flex flex-col items-center justify-center mt-2">
+                    <span id="profile-name-under-pic" class="font-mono text-blue-900 text-base font-bold bg-white rounded px-2 py-1 shadow">AGENT REDACTED</span>
+                </div>
                 <div class="px-6 pt-2 pb-1">
                     <h3 class="font-stencil text-3xl text-blue-900 tracking-widest">CLITORIS INVESTIGATION AGENCY</h3>
                     <p class="font-mono text-xs text-blue-900 mt-1">THIS CERTIFIES THAT THE SIGNATURE AND PHOTOGRAPH HEREON IS AN APPROVED</p>
                 </div>
                 <div class="bg-blue-900 w-full py-2 px-6 flex flex-col items-start rounded-b-2xl">
                     <span class="font-mono text-white text-lg font-bold">SPECIAL AGENT :</span>
-                    <span id="profile-name" class="font-mono text-neon-green text-base font-bold"></span>
-                    <span id="profile-handle" class="font-mono text-neon-green text-sm"></span>
+                    <span id="profile-name" class="font-mono text-neon-green text-base font-bold">AGENT REDACTED</span>
+                    <span id="profile-handle" class="font-mono text-neon-green text-sm">@AGENT_REDACTED</span>
                 </div>
             </div>
             <p class="font-mono text-gray-400 text-xs mt-2">Right-click and save your badge. Welcome, Agent.</p>
@@ -326,6 +440,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // Horizontal scrolling navigation
             const mainContainer = document.getElementById('main-container');
             const sections = document.querySelectorAll('.page-section');
             const navLinks = document.querySelectorAll('.nav-link');
@@ -357,27 +472,22 @@
                 });
             });
 
-            mainContainer.addEventListener('scroll', () => {
-                const scrollPercentage = mainContainer.scrollLeft / (mainContainer.scrollWidth - window.innerWidth);
-                sections.forEach(section => {
-                    section.style.backgroundPosition = `${50 - (scrollPercentage * 20)}% center`;
-                });
+            // Mobile menu toggle
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
             });
 
-            const getBadgeBtn = document.getElementById('get-badge-btn');
-            if (getBadgeBtn) {
-                getBadgeBtn.addEventListener('click', () => {
-                    scrollToSection('badge-generator');
-                });
-            }
-
+            // Agent carousel
             const agents = [
                 { img: '1.jpg', name: 'Agent of Arousal', clearance: 'ULTRA' },
                 { img: 'spark.jpeg', name: 'Double-D Agent', clearance: 'SECRET' },
-                { img: '3.jpg', name: 'Senior Moisture Analyst', clearance: 'TOP SECRET' },
-                { img: '4.jpg', name: 'Agent Pleasure Handler', clearance: 'ULTRA' },
-                { img: 'baji.jpeg', name: 'Deputy of Desire', clearance: 'SECRET' },
-                { img: '2.jpg', name: 'Agent Deep Throat', clearance: 'TOP SECRET' }
+                { img: '2.jpg', name: 'Senior Moisture Analyst', clearance: 'TOP SECRET' },
+                { img: '3.jpg', name: 'Agent Pleasure Handler', clearance: 'ULTRA' },
+                { img: '4.jpg', name: 'Deputy of Desire', clearance: 'SECRET' },
+                { img: 'baji.jpeg', name: 'Agent Deep Throat', clearance: 'TOP SECRET' }
             ];
 
             function renderContinuousCarousel() {
@@ -388,7 +498,7 @@
                 extendedAgents.forEach(agent => {
                     html += `<div class="agent-card bg-black/40 border border-neon-green/40 rounded-xl p-6 text-center shadow-lg group relative overflow-hidden w-64 mx-4 flex-shrink-0">
                         <div class="absolute inset-0 bg-gradient-to-br from-neon-green/10 via-transparent to-black/30 opacity-60 pointer-events-none"></div>
-                        <img loading="lazy" src="${agent.img}" alt="${agent.name}" class="w-28 h-28 mx-auto mb-4 rounded-full object-cover border-4 border-neon-green shadow-[0_0_20px_#39FF13]" onerror="this.onerror=null;this.src='https://placehold.co/112x112/1E1F21/39FF13?text=?';">
+                        <img loading="lazy" src="${agent.img}" alt="${agent.name}" class="w-28 h-28 mx-auto mb-4 rounded-full object-cover border-4 border-neon-green shadow-[0_0_20px_#39FF13]">
                         <h3 class="font-stencil text-xl text-neon-green mb-2 drop-shadow-[0_0_10px_#39FF13]">${agent.name}</h3>
                         <span class="inline-block font-mono text-xs text-neon-green bg-black/60 px-3 py-1 rounded-full border border-neon-green/30 mt-2">Clearance: ${agent.clearance}</span>
                     </div>`;
@@ -417,6 +527,7 @@
             renderContinuousCarousel();
             animateCarousel();
 
+            // Contract address copy button
             const copyCABtn = document.getElementById('copy-ca-btn');
             if (copyCABtn) {
                 copyCABtn.addEventListener('click', () => {
@@ -428,6 +539,7 @@
                 });
             }
 
+            // Accordion functionality
             const accordionContainer = document.getElementById('accordion-container');
             if (accordionContainer) {
                 accordionContainer.addEventListener('click', (e) => {
@@ -444,6 +556,7 @@
                 });
             }
 
+            // Badge generator functionality
             const generateBtn = document.getElementById('generate-badge-btn');
             const twitterInput = document.getElementById('twitter-handle-input');
             const modal = document.getElementById('badge-modal');
@@ -451,61 +564,39 @@
             const picContainer = document.getElementById('profile-pic-container');
             const nameEl = document.getElementById('profile-name');
             const handleEl = document.getElementById('profile-handle');
-
-            async function fetchTwitterProfile(username) {
-                // This is a mock function as client-side fetching is restricted by CORS.
-                // In a real application, this would be a backend endpoint.
-                console.log(`Fetching profile for: ${username}`);
-                return {
-                    pfp_url: `https://unavatar.io/twitter/${username}`,
-                    name: `Agent ${username}`,
-                    handle: `@${username}`
-                };
-            }
+            const nameUnderPic = document.getElementById('profile-name-under-pic');
 
             function extractUsername(urlOrHandle) {
                 const match = urlOrHandle.match(/(?:x.com\/|twitter.com\/)?([A-Za-z0-9_]{1,15})/);
                 return match ? match[1] : urlOrHandle.replace('@','').trim();
             }
 
-            async function drawBadgeWithProfile(profile) {
+            function drawBadgeWithProfile(username) {
                 picContainer.innerHTML = '';
-                if (profile && profile.pfp_url) {
-                    const avatar = document.createElement('img');
-                    avatar.src = profile.pfp_url;
-                    avatar.alt = 'Profile Picture';
-                    avatar.className = 'w-full h-full object-cover rounded-lg';
-                    avatar.onerror = function() {
-                        this.onerror=null;
-                        this.src='https://placehold.co/96x96/e2e8f0/4a5568?text=N/A';
-                    };
-                    picContainer.appendChild(avatar);
-                } else {
-                    picContainer.innerHTML = '<span class="font-mono text-blue-900">No Image</span>';
-                }
+                const avatar = document.createElement('img');
+                avatar.src = `https://unavatar.io/twitter/${username}`;
+                avatar.alt = 'Profile Picture';
+                avatar.className = 'w-full h-full object-cover rounded-lg';
+                avatar.onerror = function() {
+                    this.onerror=null;
+                    this.src='https://placehold.co/96x96/e2e8f0/4a5568?text=N/A';
+                };
+                picContainer.appendChild(avatar);
                 
-                const nameSection = document.getElementById('profile-name-section');
-                if (nameSection) {
-                    nameSection.innerHTML = '';
-                    const nameSpan = document.createElement('span');
-                    nameSpan.id = 'profile-name-under-pic';
-                    nameSpan.className = 'font-mono text-blue-900 text-base font-bold bg-white rounded px-2 py-1 shadow';
-                    nameSpan.textContent = profile?.name || 'AGENT REDACTED';
-                    nameSection.appendChild(nameSpan);
-                }
-                
-                nameEl.textContent = (profile?.name || 'AGENT REDACTED').toUpperCase();
-                handleEl.textContent = profile?.handle || '@AGENT_REDACTED';
+                const agentName = `Agent ${username.charAt(0).toUpperCase() + username.slice(1)}`;
+                nameUnderPic.textContent = agentName;
+                nameEl.textContent = agentName.toUpperCase();
+                handleEl.textContent = `@${username}`;
                 modal.classList.remove('hidden');
                 modal.classList.add('flex');
             }
 
-            generateBtn.addEventListener('click', async () => {
+            generateBtn.addEventListener('click', () => {
                 const input = twitterInput.value.trim();
+                if (!input) return;
                 const username = extractUsername(input);
                 if (!username) return;
-                const profile = await fetchTwitterProfile(username);
-                await drawBadgeWithProfile(profile);
+                drawBadgeWithProfile(username);
             });
 
             const closeModal = () => {
@@ -517,21 +608,227 @@
             modal.addEventListener('click', (e) => {
                 if (e.target === modal) closeModal();
             });
+
+            // Quiz functionality
+            const quizQuestions = [
+                 {
+                    question: "What is the average mission success rate for locating the G-spot?",
+                    options: [
+                        "18%",
+                        "32%",
+                        "57%",
+                        "74%"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "What is the primary objective of the Clitoris Inspection Agency?",
+                    options: [
+                        "To locate and map all clitorises worldwide",
+                        "To ensure all men can find the clitoris",
+                        "To prevent pleasure voids through intelligence gathering",
+                        "To develop new sexual enhancement technologies"
+                    ],
+                    correct: 2
+                }
+               ,
+                {
+                    question: "What percentage of male agents fail the initial clitoris location test?",
+                    options: [
+                        "22%",
+                        "47%",
+                        "68%",
+                        "91%"
+                    ],
+                    correct: 3
+                },
+                {
+                    question: "Which tool is essential for every CIA field agent?",
+                    options: [
+                        "Magnifying glass",
+                        "Sensitivity training manual",
+                        "Topographic map",
+                        "Ultraviolet flashlight"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "Which of these is NOT an approved technique for clitoral detection?",
+                    options: [
+                        "Sonar mapping",
+                        "Infrared scanning",
+                        "Random poking",
+                        "Guided exploration"
+                    ],
+                    correct: 2
+                }
+            ];
+
+            const quizContainer = document.getElementById('quiz-container');
+            const quizQuestion = document.getElementById('quiz-question');
+            const quizOptions = document.getElementById('quiz-options');
+            const currentQuestionEl = document.getElementById('current-question');
+            const totalQuestionsEl = document.getElementById('total-questions');
+            const quizScore = document.getElementById('quiz-score');
+            const progressFill = document.getElementById('progress-fill');
+            const prevQuestionBtn = document.getElementById('prev-question-btn');
+            const nextQuestionBtn = document.getElementById('next-question-btn');
+            const quizResult = document.getElementById('quiz-result');
+            const resultTitle = document.getElementById('result-title');
+            const resultDescription = document.getElementById('result-description');
+            const badgeTitle = document.getElementById('badge-title');
+            const restartQuizBtn = document.getElementById('restart-quiz-btn');
+
+            let currentQuestionIndex = 0;
+            let userAnswers = [];
+            let score = 0;
+
+            function loadQuestion() {
+                const question = quizQuestions[currentQuestionIndex];
+                quizQuestion.textContent = question.question;
+                quizOptions.innerHTML = '';
+                
+                question.options.forEach((option, index) => {
+                    const optionEl = document.createElement('button');
+                    optionEl.className = 'quiz-option font-mono text-left p-4 bg-black/40 border border-neon-green/30 rounded-lg text-gray-300 hover:text-white';
+                    optionEl.textContent = option;
+                    optionEl.dataset.index = index;
+                    optionEl.addEventListener('click', () => selectOption(optionEl, index));
+                    quizOptions.appendChild(optionEl);
+                });
+                
+                currentQuestionEl.textContent = currentQuestionIndex + 1;
+                totalQuestionsEl.textContent = quizQuestions.length;
+                progressFill.style.width = `${(currentQuestionIndex + 1) * 20}%`;
+                
+                // Update navigation buttons
+                prevQuestionBtn.disabled = currentQuestionIndex === 0;
+                prevQuestionBtn.classList.toggle('opacity-50', currentQuestionIndex === 0);
+                prevQuestionBtn.classList.toggle('cursor-not-allowed', currentQuestionIndex === 0);
+                
+                nextQuestionBtn.textContent = currentQuestionIndex === quizQuestions.length - 1 ? 'Submit Answers' : 'Next';
+            }
+
+            function selectOption(optionEl, index) {
+                // Clear previous selections
+                document.querySelectorAll('.quiz-option').forEach(opt => {
+                    opt.classList.remove('selected', 'correct', 'incorrect');
+                });
+                
+                // Mark selected option
+                optionEl.classList.add('selected');
+                userAnswers[currentQuestionIndex] = index;
+            }
+
+            function showResults() {
+                // Calculate score
+                score = 0;
+                quizQuestions.forEach((question, index) => {
+                    if (userAnswers[index] === question.correct) {
+                        score++;
+                    }
+                });
+                
+                quizScore.textContent = score;
+                
+                // Determine result level
+                let title, description, badge;
+                const percentage = (score / quizQuestions.length) * 100;
+                
+                if (percentage >= 80) {
+                    title = "MASTER AGENT";
+                    description = "Your expertise is unmatched. You've located more G-spots than most agents have had hot dinners.";
+                    badge = "LEVEL 5 AGENT";
+                } else if (percentage >= 60) {
+                    title = "SENIOR AGENT";
+                    description = "You've got the skills but need more field experience. Keep practicing those detection techniques.";
+                    badge = "LEVEL 4 AGENT";
+                } else if (percentage >= 40) {
+                    title = "FIELD AGENT";
+                    description = "You show promise but need additional training. Report to the Sensuality Simulation Lab immediately.";
+                    badge = "LEVEL 3 AGENT";
+                } else if (percentage >= 20) {
+                    title = "TRAINEE AGENT";
+                    description = "Your detection skills need significant improvement. Mandatory sensitivity training required.";
+                    badge = "LEVEL 2 AGENT";
+                } else {
+                    title = "RECRUIT";
+                    description = "Your performance was... disappointing. You're being reassigned to paperwork duty.";
+                    badge = "LEVEL 1 AGENT";
+                }
+                
+                resultTitle.textContent = title;
+                resultDescription.textContent = description;
+                badgeTitle.textContent = badge;
+                
+                // Show results
+                quizContainer.querySelector('#quiz-header').classList.add('hidden');
+                quizContainer.querySelector('#quiz-question').classList.add('hidden');
+                quizContainer.querySelector('#quiz-options').classList.add('hidden');
+                quizContainer.querySelector('#quiz-controls').classList.add('hidden');
+                quizResult.classList.remove('hidden');
+            }
+
+            prevQuestionBtn.addEventListener('click', () => {
+                if (currentQuestionIndex > 0) {
+                    currentQuestionIndex--;
+                    loadQuestion();
+                }
+            });
+
+            nextQuestionBtn.addEventListener('click', () => {
+                if (userAnswers[currentQuestionIndex] === undefined) {
+                    alert("Please select an answer before proceeding");
+                    return;
+                }
+                
+                if (currentQuestionIndex < quizQuestions.length - 1) {
+                    currentQuestionIndex++;
+                    loadQuestion();
+                } else {
+                    showResults();
+                }
+            });
+
+            restartQuizBtn.addEventListener('click', () => {
+                currentQuestionIndex = 0;
+                userAnswers = [];
+                score = 0;
+                
+                quizContainer.querySelector('#quiz-header').classList.remove('hidden');
+                quizContainer.querySelector('#quiz-question').classList.remove('hidden');
+                quizContainer.querySelector('#quiz-options').classList.remove('hidden');
+                quizContainer.querySelector('#quiz-controls').classList.remove('hidden');
+                quizResult.classList.add('hidden');
+                
+                loadQuestion();
+            });
+
+            // Initialize quiz
+            totalQuestionsEl.textContent = quizQuestions.length;
+            loadQuestion();
+            
+            // Convert vertical scroll to horizontal scroll
+            mainContainer.addEventListener("wheel", (e) => {
+                if (e.deltaY !== 0) {
+                    e.preventDefault(); 
+                    mainContainer.scrollBy({
+                        left: e.deltaY, // use vertical scroll as horizontal movement
+                        behavior: "smooth"
+                    });
+                }
+            }, { passive: false });
+
+            // Add this code for the 'Get Your Badge' button
+const getBadgeBtn = document.getElementById('get-badge-btn');
+if (getBadgeBtn) {
+    getBadgeBtn.addEventListener('click', () => {
+        // We call your existing function to scroll to the correct section
+        scrollToSection('badge-generator');
+    });
+}
         });
-
-        // Convert vertical scroll to horizontal scroll
-const container = document.getElementById("main-container");
-container.addEventListener("wheel", (e) => {
-    if (e.deltaY !== 0) {
-        e.preventDefault(); 
-        container.scrollBy({
-            left: e.deltaY, // use vertical scroll as horizontal movement
-            behavior: "smooth"
-        });
-    }
-}, { passive: false });
-
-
+        
     </script>
 </body>
 </html>
